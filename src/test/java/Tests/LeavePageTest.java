@@ -3,14 +3,14 @@ package Tests;
 import Base.BaseClass;
 import Pages.POC01_LoginPage;
 import Pages.POC03_PIMPage;
-import org.testng.IRetryAnalyzer;
+import Pages.POM04_LeavePage;
 import org.testng.annotations.Test;
 
-public class PIMPageTest extends BaseClass {
+public class LeavePageTest extends BaseClass {
 
     @Test
-    public void VerifyPIMTab() throws InterruptedException {
-        log.info("Test Started: Verify PIM Page.");
+    public void VerifyLeaveTab() throws InterruptedException {
+        log.info("Test Started: Verify Leave Page.");
         POC01_LoginPage log = new POC01_LoginPage(driver);
         log.EnterUsername("Admin");
         log.EnterPassword("admin123");
@@ -21,7 +21,6 @@ public class PIMPageTest extends BaseClass {
         Pm.ClickOnPimTab();
         Pm.ClickOnAddBtn();
         Pm.GetPimTabTitle();
-//        Pm.UploadProfile("D:\\SShot.png");
         Pm.EnterFirstName("Sam");
         Pm.EnterMiddleName("Ron");
         Pm.EnterLastName("Wilson");
@@ -31,16 +30,16 @@ public class PIMPageTest extends BaseClass {
         Pm.EnterPassword("Sam@1234", "Sam@1234" );
         Pm.ClickonSaveButtonn();
         Pm.ClickOnEmplyList();
-        Pm.EmployeeNameField("Sam Ron Wilson");
-//        Pm.EnterEmpID("0007");
-        Pm.ClickOnSearchButtonn();
-        Pm.ClickOnEditBtn();
-        Pm.ClickOnJobOpn();
-        Pm.SelectJobTitle("QA Engineer");
-        Pm.ClickonSaveBtn();
 
-
-
+        POM04_LeavePage lp = new POM04_LeavePage(driver);
+        lp.ClickOnLeaveTab();
+        lp.ClickOnEntitlementsOpn();
+        lp.ClickOnAddEntitlementsOpn();
+        lp.EnterEmployeeNAme("Sam Ron Wilson");
+        lp.SelectLeaveType("US - Personal");
+        lp.SelectLeavePeriod("2025-01-01 - 2025-12-31");
+        lp.EnterEntitlementValue(5);
+        lp.ClickOnSaveButton();
 
     }
 }

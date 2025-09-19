@@ -1,5 +1,7 @@
 package Pages;
 
+import Utils.WaitUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,15 +12,16 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
-
+@Slf4j
 public class POC02_AdminPage {
     WebDriver driver;
-    WebDriverWait wait;
+    WaitUtils wait;
 
     public POC02_AdminPage(WebDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait = new WaitUtils(driver);
         PageFactory.initElements(driver, this);
+        log.info("Admin Page initialized successfully.");
     }
 
     // Find AdminTab Element
@@ -95,13 +98,15 @@ public class POC02_AdminPage {
 
 
     public void ClickOnAdmin() {
-        wait.until(ExpectedConditions.elementToBeClickable(AdminTab));
+        wait.waitForElementToBeClickable(AdminTab, 10);
         AdminTab.click();
+        log.info("Click on Admin Tab");
     }
 
     public void ClickOnAddBtn() {
-        wait.until(ExpectedConditions.elementToBeClickable(AddBtn));
+        wait.waitForElementToBeClickable(AddBtn, 10);
         AddBtn.click();
+        log.info("Click on Add Button");
     }
 
     public String GetAdminPageURL() {
@@ -113,73 +118,86 @@ public class POC02_AdminPage {
     }
 
     public void ClickOnUserRoleDropDown() {
-        wait.until(ExpectedConditions.elementToBeClickable(UserRole));
+        wait.waitForElementToBeClickable(UserRole, 10);
         UserRole.click();
+        log.info("Click on User Role Dropdown");
     }
 
     public void clickOnAdminOpt() {
-        wait.until(ExpectedConditions.elementToBeClickable(AdminOpt));
+        wait.waitForElementToBeClickable(AdminOpt, 10);
         AdminOpt.click();
+        log.info("Select the 'Admin' option from the User role dropdown");
+
     }
 
     public void ClickOnStatusDropDown() {
-        wait.until(ExpectedConditions.elementToBeClickable(StatusDropD));
+        wait.waitForElementToBeClickable(StatusDropD, 10);
         StatusDropD.click();
+        log.info("Click on Status Dropdown");
+
     }
 
     public void ClickOnEnableOpt() {
-        wait.until(ExpectedConditions.elementToBeClickable(EnableOpt));
+        wait.waitForElementToBeClickable(EnableOpt, 10);
         EnableOpt.click();
+        log.info("Select the 'Enable' option from the status dropdown");
+
     }
 
     public void EnterPasword(String pass) {
-        wait.until(ExpectedConditions.visibilityOf(Passwrd));
+        wait.waitForElementToBeVisible(Passwrd, 10);
         Passwrd.sendKeys(pass);
+        log.info("Enter Password:"+pass);
     }
 
     public void EnterEmployeeName(String EnpName) throws InterruptedException {
-        wait.until(ExpectedConditions.visibilityOf(EmployeeNm));
+        wait.waitForElementToBeVisible(EmployeeNm, 10);
         EmployeeNm.sendKeys(EnpName);
         Thread.sleep(12000);
         EmployeeNm.sendKeys(Keys.ARROW_DOWN, Keys.ENTER);
-
+        log.info("Select the Employee name:"+EnpName);
     }
 
     public void EnterUsername(String UsrName) throws InterruptedException {
-        wait.until(ExpectedConditions.visibilityOf(UserNam));
+        wait.waitForElementToBeVisible(UserNam, 10);
         Thread.sleep(3000);
         UserNam.sendKeys(UsrName);
+        log.info("Enter User name:"+UsrName);
     }
 
     public void EnterConfirmPassword(String Conpass) throws InterruptedException {
-        wait.until(ExpectedConditions.visibilityOf(ConfimPass));
+        wait.waitForElementToBeVisible(ConfimPass, 10);
         Thread.sleep(3000);
         ConfimPass.sendKeys(Conpass);
+        log.info("Enter Confirm Password:"+Conpass);
     }
 
     public void ClickOnSaveButton() throws InterruptedException {
-        wait.until(ExpectedConditions.elementToBeClickable(SaveButton));
+        wait.waitForElementToBeClickable(SaveButton, 10);
         Thread.sleep(5000);
         SaveButton.click();
         Thread.sleep(5000);
+        log.info("Click on the save button to create user");
     }
 
     public void EnterUserNmForSearch(String UserNameAd) throws InterruptedException {
-        wait.until(ExpectedConditions.visibilityOf(UserNa));
+        wait.waitForElementToBeVisible(UserNa, 10);
         UserNa.sendKeys(UserNameAd);
         Thread.sleep(2000);
+        log.info("Enter the created user name:"+UserNameAd);
     }
 
     public void ClickOnSearchBtn() throws InterruptedException {
-        wait.until(ExpectedConditions.elementToBeClickable(SearchBtn));
+        wait.waitForElementToBeClickable(SearchBtn, 10);
         SearchBtn.click();
         Thread.sleep(3000);
         SearchBtn.click();
+        log.info("Click on search button");
     }
 
     public String UserList() throws InterruptedException {
         Thread.sleep(3000);
-        wait.until(ExpectedConditions.visibilityOfAllElements(ListOfUsers));
+        wait.waitForVisibilityOfAllElements(ListOfUsers, 10);
         System.out.println("Total User:" + ListOfUsers.size());
 
         StringBuilder sb = new StringBuilder();
@@ -190,8 +208,9 @@ public class POC02_AdminPage {
     }
 
     public void DeleteUser() {
-        wait.until(ExpectedConditions.elementToBeClickable(DeleteIcon)).click();
-        wait.until(ExpectedConditions.elementToBeClickable(DeleteBtn)).click();
+        wait.waitForElementToBeClickable(DeleteIcon, 10).click();
+        wait.waitForElementToBeClickable(DeleteBtn, 10).click();
+        log.info("User deleted successfully");
 //        wait.until(ExpectedConditions.visibilityOf(NoResultText));
 //        String actualText = NoResultText.getText();
 //        String ExpectedText = "No Records Found";
@@ -204,13 +223,13 @@ public class POC02_AdminPage {
     }
 
     public String PrintNoResult() {
-        wait.until(ExpectedConditions.visibilityOf(NoResultText));
+        wait.waitForElementToBeVisible(NoResultText, 10);
         return NoResultText.getText();
     }
 
     public void ClickOnUserRoleDropD() {
-        wait.until(ExpectedConditions.elementToBeClickable(UserRole)).click();
-        wait.until(ExpectedConditions.elementToBeClickable(AdminOpt)).click();
+        wait.waitForElementToBeClickable(UserRole, 10).click();
+        wait.waitForElementToBeClickable(AdminOpt, 10).click();
 
     }
 }

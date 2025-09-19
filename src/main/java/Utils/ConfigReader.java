@@ -1,7 +1,5 @@
 package Utils;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -18,7 +16,6 @@ public class ConfigReader {
         if (inputStream == null) {
             throw new IOException("config.properties not found in resources folder");
         }
-//        FileInputStream fis = new FileInputStream(Path);
         properties.load(inputStream);
     }
 

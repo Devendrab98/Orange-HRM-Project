@@ -1,5 +1,7 @@
 package Pages;
 
+import Utils.WaitUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,15 +12,17 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+@Slf4j
 public class POC01_LoginPage {
 
     WebDriver driver;
-    WebDriverWait wait;
+    WaitUtils wait;
 
     public POC01_LoginPage(WebDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait = new WaitUtils(driver);
         PageFactory.initElements(driver, this);
+        log.info("Login Page initialized successfully.");
     }
 
     // Find Username
@@ -51,44 +55,49 @@ public class POC01_LoginPage {
 
 
     public void EnterUsername(String usernm) {
-        wait.until(ExpectedConditions.visibilityOf(Username));
+        wait.waitForElementToBeVisible(Username, 10);
         Username.sendKeys(usernm);
+        log.info("Enter User Name:"+usernm);
     }
 
     public void EnterPassword(String pass) {
-        wait.until(ExpectedConditions.visibilityOf(Password));
+        wait.waitForElementToBeVisible(Password, 10);
         Password.sendKeys(pass);
+        log.info("Enter Password:"+pass);
     }
 
     public void ClickOnLoginButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(loginbtn));
+        wait.waitForElementToBeClickable(loginbtn, 10);
         loginbtn.click();
+        log.info("Click on login button");
     }
 
     public void GetTitle() {
-        wait.until(ExpectedConditions.visibilityOf(Title));
+        wait.waitForElementToBeVisible(Title, 10);
         System.out.println("Home page title: " + Title.getText());
     }
 
     public void ClickOnProfile() {
-        wait.until(ExpectedConditions.elementToBeClickable(Profile));
+        wait.waitForElementToBeClickable(Profile, 10);
         Profile.click();
+        log.info("Click on login Profile icon");
     }
 
     public void ClickOnLogout() {
-        wait.until(ExpectedConditions.elementToBeClickable(Logout));
+        wait.waitForElementToBeClickable(Logout, 10);
         Logout.click();
+        log.info("Click on Logout button");
     }
 
-    public String getTitle(){
+    public String getTitle() {
         return driver.getTitle();
     }
 
     public void InvalidLogin(String Usernamee, String PassWord) {
-        wait.until(ExpectedConditions.visibilityOf(Username)).sendKeys(Usernamee);
-        wait.until(ExpectedConditions.visibilityOf(Password)).sendKeys(PassWord);
-        wait.until(ExpectedConditions.elementToBeClickable(loginbtn)).click();
-        wait.until(ExpectedConditions.visibilityOf(InvalidErrorMsg));
+        wait.waitForElementToBeVisible(Username, 10).sendKeys(Usernamee);
+        wait.waitForElementToBeVisible(Password, 10).sendKeys(PassWord);
+        wait.waitForElementToBeClickable(loginbtn, 10).click();
+        wait.waitForElementToBeVisible(InvalidErrorMsg, 10);
         System.out.println("Error message is: " + InvalidErrorMsg.getText());
 
     }

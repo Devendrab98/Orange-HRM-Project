@@ -14,6 +14,7 @@ public class AdminPageTest extends BaseClass {
 
     @Test
     public void VerifyAdminTab() throws InterruptedException {
+        log.info("Test Started: Verify Admin Page.");
         POC01_LoginPage log = new POC01_LoginPage(driver);
         log.EnterUsername("Admin");
         log.EnterPassword("admin123");
@@ -49,7 +50,7 @@ public class AdminPageTest extends BaseClass {
         ad.ClickOnStatusDropDown();
         ad.ClickOnEnableOpt();
         ad.EnterPasword("Pass@123");
-        ad.EnterEmployeeName("Rahul");
+        ad.EnterEmployeeName("James");
         ad.EnterUsername("Rahulya");
         ad.EnterConfirmPassword("Pass@123");
         ad.ClickOnSaveButton();

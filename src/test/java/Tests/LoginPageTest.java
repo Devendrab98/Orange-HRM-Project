@@ -5,10 +5,11 @@ import Pages.POC01_LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class HomePageTest extends BaseClass {
+public class LoginPageTest extends BaseClass {
 
     @Test
     public void VerifyLogin() {
+        log.info("Test started: verifyLogin.");
         POC01_LoginPage lg = new POC01_LoginPage(driver);
         lg.EnterUsername("Admin");
         lg.EnterPassword("admin123");
