@@ -2,14 +2,20 @@ package Tests;
 
 import Base.BaseClass;
 import Pages.POC01_LoginPage;
+import Utils.AllureUtils;
+import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class LoginPageTest extends BaseClass {
 
-    @Test
+    @Test(description = "Verify login with valid credentials")
+    @Description("This test verifies login using correct username and password")
+    @Severity(SeverityLevel.CRITICAL)
+    @Story("Login Feature")
     public void VerifyLogin() {
         log.info("Test started: verifyLogin.");
+        AllureUtils.logInfo("Test Allure");
         POC01_LoginPage lg = new POC01_LoginPage(driver);
         lg.EnterUsername("Admin");
         lg.EnterPassword("admin123");
@@ -22,5 +28,7 @@ public class LoginPageTest extends BaseClass {
         Assert.assertTrue(actualTitle.contains("OrangeHRM"),
                 "Title is not match! the expected title is 'OrangeHRM'" + actualTitle);
         System.out.println("Title is match! User is logout successfully & the title is:" + actualTitle);
+
+        AllureUtils.attachScreenshot(driver);
     }
 }

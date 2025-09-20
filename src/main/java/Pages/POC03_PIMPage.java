@@ -227,14 +227,12 @@ public class POC03_PIMPage {
         wait.waitForElementToBeClickable(EditButton, 10);
         EditButton.click();
         log.info("Click on Edit button button");
-
     }
 
     public void ClickOnJobOpn() {
         wait.waitForElementToBeClickable(JobOption, 10);
         JobOption.click();
         log.info("Click on Job option");
-
     }
 
     public void SelectJobTitle(String SelectedJobTitle) throws InterruptedException {
@@ -242,7 +240,7 @@ public class POC03_PIMPage {
         wait.waitForElementToBeClickable(JobTitle, 10).click();
 
         // Select the option
-        WebElement SelectedOption = wait.waitForElementToBeClickable(
+        WebElement SelectedOption = wait.waitForElementToBeClickableBy(
                 By.xpath("//div[@role='listbox']//span[text()='" + SelectedJobTitle + "']"), 10);
 
         SelectedOption.click();
