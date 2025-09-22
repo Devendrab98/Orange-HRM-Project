@@ -11,13 +11,13 @@ public class PIMPageTest extends BaseClass {
     @Test
     public void VerifyPIMTab() throws InterruptedException {
         log.info("Test Started: Verify PIM Page.");
-        POC01_LoginPage lp = new POC01_LoginPage(driver);
+        POC01_LoginPage lp = new POC01_LoginPage(getDriver());
         lp.EnterUsername("Admin");
         lp.EnterPassword("admin123");
         lp.ClickOnLoginButton();
         lp.GetTitle();
 
-        POC03_PIMPage Pm= new POC03_PIMPage(driver);
+        POC03_PIMPage Pm= new POC03_PIMPage(getDriver());
         Pm.ClickOnPimTab();
         Pm.ClickOnAddBtn();
         Pm.GetPimTabTitle();

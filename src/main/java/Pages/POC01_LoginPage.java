@@ -1,6 +1,7 @@
 package Pages;
 
 import Utils.WaitUtils;
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -53,36 +54,41 @@ public class POC01_LoginPage {
     @FindBy(xpath = "//p[text()='Invalid credentials']")
     WebElement InvalidErrorMsg;
 
-
+    @Step("Enter UserName: {arg0}")
     public void EnterUsername(String usernm) {
         wait.waitForElementToBeVisible(Username, 10);
         Username.sendKeys(usernm);
         log.info("Enter User Name:"+usernm);
     }
 
+    @Step("Enter UserName: {arg0}")
     public void EnterPassword(String pass) {
         wait.waitForElementToBeVisible(Password, 10);
         Password.sendKeys(pass);
         log.info("Enter Password:"+pass);
     }
 
+    @Step("Click on Login button")
     public void ClickOnLoginButton() {
         wait.waitForElementToBeClickable(loginbtn, 10);
         loginbtn.click();
         log.info("Click on login button");
     }
 
+    @Step("Get page title")
     public void GetTitle() {
         wait.waitForElementToBeVisible(Title, 10);
         System.out.println("Home page title: " + Title.getText());
     }
 
+    @Step("Click on Profile")
     public void ClickOnProfile() {
         wait.waitForElementToBeClickable(Profile, 10);
         Profile.click();
         log.info("Click on login Profile icon");
     }
 
+    @Step("Click on Logout Option")
     public void ClickOnLogout() {
         wait.waitForElementToBeClickable(Logout, 10);
         Logout.click();
@@ -93,6 +99,7 @@ public class POC01_LoginPage {
         return driver.getTitle();
     }
 
+    @Step("Try invalid login with Username: {arg0} and Password: {arg1}")
     public void InvalidLogin(String Usernamee, String PassWord) {
         wait.waitForElementToBeVisible(Username, 10).sendKeys(Usernamee);
         wait.waitForElementToBeVisible(Password, 10).sendKeys(PassWord);

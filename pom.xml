@@ -85,6 +85,12 @@
             <version>2.30.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-java-commons</artifactId>
+            <version>2.30.0</version>
+        </dependency>
+
     </dependencies>
     <build>
         <plugins>
@@ -103,6 +109,19 @@
                 <artifactId>allure-maven</artifactId>
                 <version>2.16.1</version>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <source>17</source>   <!-- use your installed JDK version -->
+                    <target>17</target>
+                    <compilerArgs>
+                        <arg>-parameters</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 </project>

@@ -15,7 +15,7 @@ public class LeavePageTest extends BaseClass {
         log.info("Admin User is now login into account.");
 
         // --------- Login as Admin ---------
-        POC01_LoginPage lp = new POC01_LoginPage(driver);
+        POC01_LoginPage lp = new POC01_LoginPage(getDriver());
         lp.EnterUsername("Admin");
         lp.EnterPassword("admin123");
         lp.ClickOnLoginButton();
@@ -25,7 +25,7 @@ public class LeavePageTest extends BaseClass {
         String uniqueUser = "Sam" + System.currentTimeMillis();
 
         // --------- Create Employee ---------
-        POC03_PIMPage Pm = new POC03_PIMPage(driver);
+        POC03_PIMPage Pm = new POC03_PIMPage(getDriver());
         log.info("Admin User in now on PIM Page to create the Employee");
         Pm.ClickOnPimTab();
         Pm.ClickOnAddBtn();
@@ -41,7 +41,7 @@ public class LeavePageTest extends BaseClass {
         Pm.ClickOnEmplyList();
 
         // --------- Assign Leave to that Employee ---------
-        POM04_LeavePage LeavePg = new POM04_LeavePage(driver);
+        POM04_LeavePage LeavePg = new POM04_LeavePage(getDriver());
         log.info("Admin User in now on Leave Page to create the leave for the Employee");
         LeavePg.ClickOnLeaveTab();
         LeavePg.ClickOnEntitlementsOpn();

@@ -20,13 +20,13 @@ public class RecruitmentPageTest extends BaseClass {
         log.info("Admin User is now login into account.");
 
         // --------- Login as Admin ---------
-        POC01_LoginPage lp = new POC01_LoginPage(driver);
+        POC01_LoginPage lp = new POC01_LoginPage(getDriver());
         lp.EnterUsername("Admin");
         lp.EnterPassword("admin123");
         lp.ClickOnLoginButton();
         lp.GetTitle();
 
-        POM05_RecruitmentPage RC = new POM05_RecruitmentPage(driver);
+        POM05_RecruitmentPage RC = new POM05_RecruitmentPage(getDriver());
         log.info("Admin is now on the RecruitmentPage");
         RC.ClickOnRecruitmentTab();
         RC.ClickOnAddBtn();

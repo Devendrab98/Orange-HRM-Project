@@ -3,7 +3,12 @@ package Tests;
 import Base.BaseClass;
 import Pages.POC01_LoginPage;
 import Pages.POC02_AdminPage;
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 import org.testng.Assert;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -12,16 +17,20 @@ import static org.testng.Assert.assertTrue;
 
 public class AdminPageTest extends BaseClass {
 
-    @Test
+    @Test(description = "Verify Create & delete the admin user")
+    @Description("This test verifies the to create the admin user")
+    @Severity(SeverityLevel.CRITICAL)
+    @Story("User Creations Feature")
+    @Parameters("Browser")
     public void VerifyAdminTab() throws InterruptedException {
         log.info("Test Started: Verify Admin Page.");
-        POC01_LoginPage lp = new POC01_LoginPage(driver);
+        POC01_LoginPage lp = new POC01_LoginPage(getDriver());
         lp.EnterUsername("Admin");
         lp.EnterPassword("admin123");
         lp.ClickOnLoginButton();
         lp.GetTitle();
 
-        POC02_AdminPage ad = new POC02_AdminPage(driver);
+        POC02_AdminPage ad = new POC02_AdminPage(getDriver());
         ad.ClickOnAdmin();
 
         // User Assert to Verify Admin page URL
@@ -50,7 +59,7 @@ public class AdminPageTest extends BaseClass {
         ad.ClickOnStatusDropDown();
         ad.ClickOnEnableOpt();
         ad.EnterPasword("Pass@123");
-        ad.EnterEmployeeName("James");
+        ad.EnterEmployeeName("Frank");
         ad.EnterUsername("Rahulya");
         ad.EnterConfirmPassword("Pass@123");
         ad.ClickOnSaveButton();
