@@ -51,15 +51,10 @@ public class AdminPageTest extends BaseClass {
         System.out.println("Add User page URL is valid: " + AddPgUrl);
         Thread.sleep(3000);
 
-//        ad.ClickOnUserRoleDropDown();
-//        ad.clickOnAdminOpt();
-//        ad.ClickOnStatusDropDown();
-        ad.ClickOnUserRoleDropDown();
-        ad.clickOnAdminOpt();
-        ad.ClickOnStatusDropDown();
-        ad.ClickOnEnableOpt();
+        ad.ClickOnUserRoleDropDown("Admin");
+        ad.ClickOnStatusDropDown("Enabled");
         ad.EnterPasword("Pass@123");
-        ad.EnterEmployeeName("Frank");
+        ad.EnterEmployeeName("james");
         ad.EnterUsername("Rahulya");
         ad.EnterConfirmPassword("Pass@123");
         ad.ClickOnSaveButton();

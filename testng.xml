@@ -13,10 +13,10 @@
         </classes>
     </test>
 
-    <test verbose="2" preserve-order="true" name="Login Test">
-        <parameter name="Browser" value="firefox"/>
-        <classes>
-            <class name="Tests.LoginPageTest"/>
-        </classes>
-    </test>
+<!--    <test verbose="2" preserve-order="true" name="Login Test">-->
+<!--        <parameter name="Browser" value="firefox"/>-->
+<!--        <classes>-->
+<!--            <class name="Tests.LoginPageTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 </suite>

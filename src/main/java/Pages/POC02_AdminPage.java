@@ -1,5 +1,6 @@
 package Pages;
 
+import Utils.BasePageUtils;
 import Utils.WaitUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.Keys;
@@ -13,11 +14,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 @Slf4j
-public class POC02_AdminPage {
+public class POC02_AdminPage extends BasePageUtils {
     WebDriver driver;
     WaitUtils wait;
 
     public POC02_AdminPage(WebDriver driver) {
+        super(driver);
         this.driver = driver;
         wait = new WaitUtils(driver);
         PageFactory.initElements(driver, this);
@@ -120,34 +122,44 @@ public class POC02_AdminPage {
     public void ClickOnUserRoleDropDown() {
         wait.waitForElementToBeClickable(UserRole, 10);
         UserRole.click();
+    }
+
+    public void ClickOnUserRoleDropDown(String UserRoleValue){
+        selectDropdownByLabel("User Role", UserRoleValue);
         log.info("Click on User Role Dropdown");
+        log.info("Select the 'Admin' option from the User role dropdown");
     }
 
     public void clickOnAdminOpt() {
         wait.waitForElementToBeClickable(AdminOpt, 10);
         AdminOpt.click();
-        log.info("Select the 'Admin' option from the User role dropdown");
-
     }
 
     public void ClickOnStatusDropDown() {
         wait.waitForElementToBeClickable(StatusDropD, 10);
         StatusDropD.click();
-        log.info("Click on Status Dropdown");
 
+    }
+
+    public void ClickOnStatusDropDown(String StatusValue){
+        selectDropdownByLabel("Status",StatusValue);
+        log.info("Click on Status Dropdown");
+        log.info("Select the 'Enable' option from the status dropdown");
     }
 
     public void ClickOnEnableOpt() {
         wait.waitForElementToBeClickable(EnableOpt, 10);
         EnableOpt.click();
-        log.info("Select the 'Enable' option from the status dropdown");
-
     }
 
-    public void EnterPasword(String pass) {
-        wait.waitForElementToBeVisible(Passwrd, 10);
-        Passwrd.sendKeys(pass);
-        log.info("Enter Password:"+pass);
+//    public void EnterPasword(String pass) {
+//        wait.waitForElementToBeVisible(Passwrd, 10);
+//        Passwrd.sendKeys(pass);
+//        log.info("Enter Password:"+pass);
+//    }
+
+    public void EnterPasword(String Password){
+        enterTextByLabel("Password", Password);
     }
 
     public void EnterEmployeeName(String EnpName) throws InterruptedException {
@@ -158,18 +170,27 @@ public class POC02_AdminPage {
         log.info("Select the Employee name:"+EnpName);
     }
 
+//    public void EnterUsername(String UsrName) throws InterruptedException {
+//        wait.waitForElementToBeVisible(UserNam, 10);
+//        Thread.sleep(3000);
+//        UserNam.sendKeys(UsrName);
+//        log.info("Enter User name:"+UsrName);
+//    }
+
     public void EnterUsername(String UsrName) throws InterruptedException {
-        wait.waitForElementToBeVisible(UserNam, 10);
         Thread.sleep(3000);
-        UserNam.sendKeys(UsrName);
-        log.info("Enter User name:"+UsrName);
+        enterTextByLabel("Username", UsrName);
     }
 
-    public void EnterConfirmPassword(String Conpass) throws InterruptedException {
-        wait.waitForElementToBeVisible(ConfimPass, 10);
-        Thread.sleep(3000);
-        ConfimPass.sendKeys(Conpass);
-        log.info("Enter Confirm Password:"+Conpass);
+//    public void EnterConfirmPassword(String Conpass) throws InterruptedException {
+//        wait.waitForElementToBeVisible(ConfimPass, 10);
+//        Thread.sleep(3000);
+//        ConfimPass.sendKeys(Conpass);
+//        log.info("Enter Confirm Password:"+Conpass);
+//    }
+
+    public void EnterConfirmPassword(String Conpass){
+        enterTextByLabel("Confirm Password", Conpass);
     }
 
     public void ClickOnSaveButton() throws InterruptedException {
@@ -180,11 +201,16 @@ public class POC02_AdminPage {
         log.info("Click on the save button to create user");
     }
 
-    public void EnterUserNmForSearch(String UserNameAd) throws InterruptedException {
-        wait.waitForElementToBeVisible(UserNa, 10);
-        UserNa.sendKeys(UserNameAd);
+//    public void EnterUserNmForSearch(String UserNameAd) throws InterruptedException {
+//        wait.waitForElementToBeVisible(UserNa, 10);
+//        UserNa.sendKeys(UserNameAd);
+//        Thread.sleep(2000);
+//        log.info("Enter the created user name:"+UserNameAd);
+//    }
+
+    public void EnterUserNmForSearch(String UsrName) throws InterruptedException {
         Thread.sleep(2000);
-        log.info("Enter the created user name:"+UserNameAd);
+        enterTextByLabel("Username", UsrName);
     }
 
     public void ClickOnSearchBtn() throws InterruptedException {
@@ -230,6 +256,5 @@ public class POC02_AdminPage {
     public void ClickOnUserRoleDropD() {
         wait.waitForElementToBeClickable(UserRole, 10).click();
         wait.waitForElementToBeClickable(AdminOpt, 10).click();
-
     }
 }
