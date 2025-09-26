@@ -193,11 +193,17 @@ public class POC02_AdminPage extends BasePageUtils {
         enterTextByLabel("Confirm Password", Conpass);
     }
 
+//    public void ClickOnSaveButton() throws InterruptedException {
+//        wait.waitForElementToBeClickable(SaveButton, 10);
+//        Thread.sleep(5000);
+//        SaveButton.click();
+//        Thread.sleep(5000);
+//        log.info("Click on the save button to create user");
+//    }
+
     public void ClickOnSaveButton() throws InterruptedException {
-        wait.waitForElementToBeClickable(SaveButton, 10);
         Thread.sleep(5000);
-        SaveButton.click();
-        Thread.sleep(5000);
+        clickButtonByText("Save");
         log.info("Click on the save button to create user");
     }
 

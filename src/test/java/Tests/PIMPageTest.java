@@ -29,7 +29,7 @@ public class PIMPageTest extends BaseClass {
         Pm.EnableCreateLoginSwitch();
         Pm.EnterUsername("Sam123");
         Pm.EnterPassword("Sam@1234", "Sam@1234" );
-        Pm.ClickonSaveButtonn();
+        Pm.ClickOnSaveButton();
         Pm.ClickOnEmplyList();
         Pm.EmployeeNameField("Sam Ron Wilson");
 //        Pm.EnterEmpID("0007");

@@ -37,7 +37,7 @@ public class LeavePageTest extends BaseClass {
         Pm.EnableCreateLoginSwitch();
         Pm.EnterUsername(uniqueUser);
         Pm.EnterPassword("Sam@1234", "Sam@1234");
-        Pm.ClickonSaveButtonn();
+        Pm.ClickOnSaveButton();
         Pm.ClickOnEmplyList();
 
         // --------- Assign Leave to that Employee ---------

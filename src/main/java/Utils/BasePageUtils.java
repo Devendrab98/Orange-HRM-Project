@@ -1,5 +1,6 @@
 package Utils;
 
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 
+@Slf4j
 public class BasePageUtils {
 
     WebDriver driver;
@@ -22,7 +24,7 @@ public class BasePageUtils {
         String xpath = "//label[text()='" + labelText + "']/../following-sibling::div//input";
         WebElement inputField = wait.waitForElementToBeVisibleByLocator(By.xpath(xpath), 10);
         inputField.sendKeys(value);
-        System.out.println("Entered text '" + value + "' in field: " + labelText);
+        log.info("Entered text '" + value + "' in field: " + labelText);
     }
 
     // Generic: select dropdown value by label
@@ -39,7 +41,7 @@ public class BasePageUtils {
             if (opt.getText().equalsIgnoreCase(optionToSelect)) {
                 opt.click();
                 found = true;
-                System.out.println("Dropdown '" + labelText + "' selected: " + optionToSelect);
+                log.info("Dropdown '" + labelText + "' selected: " + optionToSelect);
                 break;
             }
         }
@@ -54,7 +56,7 @@ public class BasePageUtils {
         String xpath = "//button[normalize-space()='" + buttonText + "']";
         WebElement button = wait.waitForElementToBeClickableBy(By.xpath(xpath), 10);
         button.click();
-        System.out.println("Clicked on button: " + buttonText);
+        log.info("Clicked on button: " + buttonText);
     }
 
 }

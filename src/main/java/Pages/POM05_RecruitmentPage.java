@@ -140,10 +140,14 @@ public class POM05_RecruitmentPage extends BasePageUtils {
         Thread.sleep(3000);
     }
 
-    public void ClickOnCandidatesOpn() throws InterruptedException {
-        Thread.sleep(5000);
-        wait.waitForElementToBeClickable(Candidates, 10);
-        Candidates.click();
+//    public void ClickOnCandidatesOpn() throws InterruptedException {
+//        Thread.sleep(5000);
+//        wait.waitForElementToBeClickable(Candidates, 10);
+//        Candidates.click();
+//    }
+
+    public void ClickOnCandidatesOpn(){
+        clickButtonByText("Candidates");
     }
 
     public void EnterCandidateName(String CanName) throws InterruptedException {
@@ -154,10 +158,14 @@ public class POM05_RecruitmentPage extends BasePageUtils {
         log.info("Enter Candidate Name:" + CanName);
     }
 
-    public void ClickOnSearchButtonn() {
-        wait.waitForElementToBeClickable(SearchButtn, 10);
-        SearchButtn.click();
-        log.info("Click on Search button");
+//    public void ClickOnSearchButtonn() {
+//        wait.waitForElementToBeClickable(SearchButtn, 10);
+//        SearchButtn.click();
+//        log.info("Click on Search button");
+//    }
+
+    public void ClickOnSearchButtonn(){
+        clickButtonByText("Search");
     }
 
     public void ClickOnEyeBtn() {
@@ -173,9 +181,14 @@ public class POM05_RecruitmentPage extends BasePageUtils {
         log.info("Click on Shortlist button button");
     }
 
-    public void SaveButn() {
-        wait.waitForElementToBeClickable(SaveButton, 10);
-        SaveButton.click();
+//    public void SaveButn() {
+//        wait.waitForElementToBeClickable(SaveButton, 10);
+//        SaveButton.click();
+//        log.info("Click on Save button");
+//    }
+
+    public void SaveButn(){
+        clickButtonByText("Save");
         log.info("Click on Save button");
     }
 

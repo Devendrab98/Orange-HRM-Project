@@ -97,25 +97,6 @@ public class POM04_LeavePage extends BasePageUtils {
         log.info("Enter Employee Name:" + EMPName);
     }
 
-//    public void SelectLeaveType(String ExpectedLeave) throws InterruptedException {
-//        wait.waitForVisibilityOfAllElements(LeaveType, 10);
-//        System.out.println("Number of leave type:" + LeaveType.size());
-//
-//        boolean found = false;
-//        for (WebElement listOfLeave : LeaveType) {
-//            System.out.println("All Leave type:" + listOfLeave);
-//            if (listOfLeave.getText().equalsIgnoreCase(ExpectedLeave)) {
-//                listOfLeave.click();
-//                Thread.sleep(4000);
-//                System.out.println("Leave type '" + ExpectedLeave + "' found and selected!");
-//                break;
-//            }
-//        }
-//        if (!found) {
-//            System.out.println("Leave type '" + ExpectedLeave + "' not found in the list!");
-//        }
-//    }
-
     public void SelectLeaveType(String LeaveType) {
         selectDropdownByLabel("Leave Type", LeaveType);
     }
@@ -124,40 +105,30 @@ public class POM04_LeavePage extends BasePageUtils {
         selectDropdownByLabel("Leave Period", LeavePeriod);
     }
 
-//    public void SelectLeavePeriod(String ExpectedPeriod) throws InterruptedException {
-//        wait.waitForVisibilityOfAllElements(LeavePeriod, 10);
-//        System.out.println("Number of Leave Period:" + LeavePeriod.size());
-//
-//        boolean found = false;
-//        for (WebElement listOfLeavePrd : LeavePeriod) {
-//            System.out.println("All Leave Period:" + listOfLeavePrd);
-//            if (listOfLeavePrd.getText().equalsIgnoreCase(ExpectedPeriod)) {
-//                listOfLeavePrd.click();
-//                Thread.sleep(4000);
-//                System.out.println("Leave Period '" + ExpectedPeriod + "' found and selected!");
-//                break;
-//            }
-//        }
-//        if (!found) {
-//            System.out.println("Leave Period '" + ExpectedPeriod + "' not found in the list!");
-//        }
-//    }
-
     public void EnterEntitlementValue(int Number) {
         wait.waitForElementToBeVisible(EntitlementValue, 10);
         EntitlementValue.sendKeys(String.valueOf(Number));
         log.info("Enter the Entitlement Value:" + Number);
     }
 
-    public void ClickOnSaveButton() {
-        wait.waitForElementToBeClickable(SaVeButtonn, 10);
-        SaVeButtonn.click();
+//    public void ClickOnSaveButton() {
+//        wait.waitForElementToBeClickable(SaVeButtonn, 10);
+//        SaVeButtonn.click();
+//        log.info("Click on save button");
+//    }
+    public void ClickOnSaveButton(){
+        clickButtonByText("Save");
         log.info("Click on save button");
     }
 
-    public void ClickOnConfirmBtn() {
-        wait.waitForElementToBeClickable(ConfirmButton, 10);
-        ConfirmButton.click();
+//    public void ClickOnConfirmBtn() {
+//        wait.waitForElementToBeClickable(ConfirmButton, 10);
+//        ConfirmButton.click();
+//        log.info("Click on Confirm Button button");
+//    }
+
+    public void ClickOnConfirmBtn(){
+        clickButtonByText("Confirm");
         log.info("Click on Confirm Button button");
     }
 
@@ -174,7 +145,6 @@ public class POM04_LeavePage extends BasePageUtils {
         for (WebElement listt : ListOfLeave) {
             System.out.println("Leave created result:" + listt.getText());
         }
-
 
     }
 }

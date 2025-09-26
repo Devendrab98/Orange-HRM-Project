@@ -1,5 +1,6 @@
 package Pages;
 
+import Utils.BasePageUtils;
 import Utils.WaitUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.*;
@@ -14,11 +15,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
-public class POC03_PIMPage {
+public class POC03_PIMPage extends BasePageUtils {
     WebDriver driver;
     WaitUtils wait;
 
     public POC03_PIMPage(WebDriver driver) {
+        super(driver);
         this.driver = driver;
         PageFactory.initElements(driver, this);
         wait = new WaitUtils(driver);
@@ -160,11 +162,14 @@ public class POC03_PIMPage {
         log.info("Enter Last Name:" + LName);
     }
 
-    public void EnterEmployeeID(String EmployeeID) throws InterruptedException {
-        wait.waitForElementToBeVisible(EmpID, 10);
-        EmpID.sendKeys(EmployeeID);
-        log.info("Enter Employee ID:" + EmployeeID);
+//    public void EnterEmployeeID(String EmployeeID) throws InterruptedException {
+//        wait.waitForElementToBeVisible(EmpID, 10);
+//        EmpID.sendKeys(EmployeeID);
+//        log.info("Enter Employee ID:" + EmployeeID);
+//    }
 
+    public void EnterEmployeeID(String EmpId){
+        enterTextByLabel("Employee Id", EmpId);
     }
 
     public void EnableCreateLoginSwitch() {
@@ -173,10 +178,14 @@ public class POC03_PIMPage {
         log.info("Enable Create login switch to create the password for the create user");
     }
 
-    public void EnterUsername(String UName) {
-        wait.waitForElementToBeVisible(UserNAme, 10);
-        UserNAme.sendKeys(UName);
-        log.info("Enter the User name:" + UName);
+//    public void EnterUsername(String UName) {
+//        wait.waitForElementToBeVisible(UserNAme, 10);
+//        UserNAme.sendKeys(UName);
+//        log.info("Enter the User name:" + UName);
+//    }
+
+    public void EnterUsername(String UName){
+        enterTextByLabel("Username", UName);
     }
 
     public void EnterPassword(String Pass, String ConfirmPass) {
@@ -189,9 +198,14 @@ public class POC03_PIMPage {
         log.info("Enter Password:" + ConfirmPass);
     }
 
-    public void ClickonSaveButtonn() {
-        wait.waitForElementToBeClickable(SaveButtonn, 10);
-        SaveButtonn.click();
+//    public void ClickonSaveButtonn() {
+//        wait.waitForElementToBeClickable(SaveButtonn, 10);
+//        SaveButtonn.click();
+//        log.info("Click on save button");
+//    }
+
+    public void ClickOnSaveButton(){
+        clickButtonByText("Save");
         log.info("Click on save button");
     }
 
@@ -247,10 +261,14 @@ public class POC03_PIMPage {
         System.out.println("Selected Job Title: " + SelectedOption);
     }
 
-    public void ClickonSaveBtn() {
-        wait.waitForElementToBeClickable(SaveBtn, 10);
-        SaveBtn.click();
-        log.info("Click on Save button");
+//    public void ClickonSaveBtn() {
+//        wait.waitForElementToBeClickable(SaveBtn, 10);
+//        SaveBtn.click();
+//        log.info("Click on Save button");
+//    }
 
+    public void ClickonSaveBtn(){
+        clickButtonByText("Save");
+        log.info("Click on Save button to update the user information");
     }
 }
