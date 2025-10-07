@@ -6,10 +6,12 @@ import Pages.POC03_PIMPage;
 import org.testng.IRetryAnalyzer;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
+
 public class PIMPageTest extends BaseClass {
 
     @Test
-    public void VerifyPIMTab() throws InterruptedException {
+    public void VerifyPIMTab() throws InterruptedException, IOException {
         log.info("Test Started: Verify PIM Page.");
         POC01_LoginPage lp = new POC01_LoginPage(getDriver());
         lp.EnterUsername("Admin");
@@ -38,9 +40,5 @@ public class PIMPageTest extends BaseClass {
         Pm.ClickOnJobOpn();
         Pm.SelectJobTitle("QA Engineer");
         Pm.ClickonSaveBtn();
-
-
-
-
     }
 }

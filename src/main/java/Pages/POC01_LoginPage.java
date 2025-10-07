@@ -99,7 +99,7 @@ public class POC01_LoginPage {
         return driver.getTitle();
     }
 
-    @Step("Try invalid login with Username: {arg0} and Password: {arg1}")
+    @Step("Login with invalid Credentials username:{0} and password:{1}")
     public void InvalidLogin(String Usernamee, String PassWord) {
         wait.waitForElementToBeVisible(Username, 10).sendKeys(Usernamee);
         wait.waitForElementToBeVisible(Password, 10).sendKeys(PassWord);

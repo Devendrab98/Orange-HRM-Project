@@ -3,13 +3,17 @@ package Pages;
 import Utils.BasePageUtils;
 import Utils.WaitUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
+import org.openqa.selenium.devtools.v136.page.model.Screenshot;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -267,8 +271,11 @@ public class POC03_PIMPage extends BasePageUtils {
 //        log.info("Click on Save button");
 //    }
 
-    public void ClickonSaveBtn(){
+    public void ClickonSaveBtn() throws IOException {
         clickButtonByText("Save");
         log.info("Click on Save button to update the user information");
+
+//        File Screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+//        FileUtils.copyFile(Screenshot, new File("New File.png"));
     }
 }

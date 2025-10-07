@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 
 public class LoginPageTest extends BaseClass {
 
-    @Test(description = "Verify login with valid credentials")
+    @Test(priority = 1, description = "Verify login with valid credentials")
     @Description("This test verifies login using correct username and password")
     @Severity(SeverityLevel.CRITICAL)
     @Story("Login Feature")
@@ -31,6 +31,16 @@ public class LoginPageTest extends BaseClass {
                 "Title is not match! the expected title is 'OrangeHRM'" + actualTitle);
         System.out.println("Title is match! User is logout successfully & the title is:" + actualTitle);
 
-        AllureUtils.attachScreenshotWithName(getDriver(), "After Verify login");
+//        AllureUtils.attachScreenshotWithName(getDriver(), "After Verify login");
+    }
+
+    @Test(priority = 2, description = "Verify login with Invalid credentials")
+    @Description("This test verifies login using Incorrect username and password")
+    @Severity(SeverityLevel.CRITICAL)
+    @Story("Login Feature")
+    public void InvalidCredTest(){
+        log.info("Invalid Test started: Verify login Functionality with invalid Credentials");
+        POC01_LoginPage lgg = new POC01_LoginPage(getDriver());
+        lgg.InvalidLogin("Admin", "admin12345");
     }
 }
