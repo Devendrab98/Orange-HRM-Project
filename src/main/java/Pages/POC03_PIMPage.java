@@ -2,6 +2,7 @@ package Pages;
 
 import Utils.BasePageUtils;
 import Utils.WaitUtils;
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
@@ -124,18 +125,21 @@ public class POC03_PIMPage extends BasePageUtils {
     WebElement EmployeeName;
 
 
+    @Step("Click on the PIM tab")
     public void ClickOnPimTab() {
         wait.waitForElementToBeClickable(PimTab, 10);
         PimTab.click();
         log.info("Click on PIM Tab");
     }
 
+    @Step("Click on Add Button")
     public void ClickOnAddBtn() {
         wait.waitForElementToBeClickable(AddButton, 10);
         AddButton.click();
         log.info("Click on Add Button");
     }
 
+    @Step("Get PIM page title")
     public void GetPimTabTitle() {
         wait.waitForElementToBeVisible(PIMTabTitle, 10);
         System.out.println("PIM page title: " + PIMTabTitle.getText());
@@ -148,18 +152,21 @@ public class POC03_PIMPage extends BasePageUtils {
 //        Profile.sendKeys(Picture);
 //    }
 
+    @Step("Enter First Name: {0}")
     public void EnterFirstName(String FName) {
         wait.waitForElementToBeVisible(EmpFirstName, 10);
         EmpFirstName.sendKeys(FName);
         log.info("Enter First Name:" + FName);
     }
 
+    @Step("Enter Middle Name: {0}")
     public void EnterMiddleName(String MName) {
         wait.waitForElementToBeVisible(MiddleName, 10);
         MiddleName.sendKeys(MName);
         log.info("Enter Middle Name:" + MName);
     }
 
+    @Step("Enter Last Name: {0}")
     public void EnterLastName(String LName) {
         wait.waitForElementToBeVisible(LastName, 10);
         LastName.sendKeys(LName);
@@ -172,10 +179,12 @@ public class POC03_PIMPage extends BasePageUtils {
 //        log.info("Enter Employee ID:" + EmployeeID);
 //    }
 
+    @Step("Enter Employee Id: {0}")
     public void EnterEmployeeID(String EmpId){
         enterTextByLabel("Employee Id", EmpId);
     }
 
+    @Step("Enable Create login switch to create the password for the create user")
     public void EnableCreateLoginSwitch() {
         wait.waitForElementToBeClickable(CreateLogin, 10);
         CreateLogin.click();
@@ -188,10 +197,12 @@ public class POC03_PIMPage extends BasePageUtils {
 //        log.info("Enter the User name:" + UName);
 //    }
 
+    @Step("Enter User Name: {0}")
     public void EnterUsername(String UName){
         enterTextByLabel("Username", UName);
     }
 
+    @Step("Enter Password: {0} and Confirm Password: {1}")
     public void EnterPassword(String Pass, String ConfirmPass) {
         wait.waitForElementToBeClickable(Password, 10);
         Password.sendKeys(Pass);
@@ -199,7 +210,7 @@ public class POC03_PIMPage extends BasePageUtils {
 
         wait.waitForElementToBeClickable(ConfirmPassword, 10);
         ConfirmPassword.sendKeys(ConfirmPass);
-        log.info("Enter Password:" + ConfirmPass);
+        log.info("Enter Confirm Password:" + ConfirmPass);
     }
 
 //    public void ClickonSaveButtonn() {
@@ -208,11 +219,13 @@ public class POC03_PIMPage extends BasePageUtils {
 //        log.info("Click on save button");
 //    }
 
+    @Step("Click on the save button")
     public void ClickOnSaveButton(){
         clickButtonByText("Save");
         log.info("Click on save button");
     }
 
+    @Step("Click on Employee list tab")
     public void ClickOnEmplyList() throws InterruptedException {
         Thread.sleep(7000);
         wait.waitForElementToBeClickable(EmpListopt, 10);
@@ -220,6 +233,7 @@ public class POC03_PIMPage extends BasePageUtils {
         log.info("Click on Employee list tab");
     }
 
+    @Step("Enter Employee id")
     public void EnterEmpID(String EmplyID) throws InterruptedException {
         Thread.sleep(2000);
         wait.waitForElementToBeVisible(EmployeeIDD, 10);
@@ -227,6 +241,7 @@ public class POC03_PIMPage extends BasePageUtils {
         log.info("Enter Employee id:" + EmplyID);
     }
 
+    @Step("Enter Employee Name")
     public void EmployeeNameField(String EmplyName) throws InterruptedException {
         wait.waitForElementToBeVisible(EmployeeNamefl, 10);
         Thread.sleep(5000);
@@ -235,24 +250,28 @@ public class POC03_PIMPage extends BasePageUtils {
         log.info("Enter Employee Name:" + EmplyName);
     }
 
+    @Step("Click on Search button")
     public void ClickOnSearchButtonn() {
         wait.waitForElementToBeClickable(SearchButtn, 10);
         SearchButtn.click();
         log.info("Click on Search button");
     }
 
+    @Step("Click on Edit button button")
     public void ClickOnEditBtn() {
         wait.waitForElementToBeClickable(EditButton, 10);
         EditButton.click();
         log.info("Click on Edit button button");
     }
 
+    @Step("Click on Job option")
     public void ClickOnJobOpn() {
         wait.waitForElementToBeClickable(JobOption, 10);
         JobOption.click();
         log.info("Click on Job option");
     }
 
+    @Step("Select Job Title")
     public void SelectJobTitle(String SelectedJobTitle) throws InterruptedException {
         Thread.sleep(3000);
         wait.waitForElementToBeClickable(JobTitle, 10).click();
@@ -271,6 +290,7 @@ public class POC03_PIMPage extends BasePageUtils {
 //        log.info("Click on Save button");
 //    }
 
+    @Step("Click on Save button to update the user information")
     public void ClickonSaveBtn() throws IOException {
         clickButtonByText("Save");
         log.info("Click on Save button to update the user information");

@@ -2,6 +2,7 @@ package Pages;
 
 import Utils.BasePageUtils;
 import Utils.WaitUtils;
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -82,46 +83,54 @@ public class POM05_RecruitmentPage extends BasePageUtils {
     @FindBy(xpath = "//button[text()=' Save ']")
     WebElement SaveButton;
 
+    @Step("Click on the Recruitment tab")
     public void ClickOnRecruitmentTab() {
         wait.waitForElementToBeClickable(RecruitmentTab, 10);
         RecruitmentTab.click();
         log.info("Click on Recruitment Tab");
     }
 
+    @Step("Click on Add Button")
     public void ClickOnAddBtn() {
         wait.waitForElementToBeClickable(Addbtn, 10);
         Addbtn.click();
         log.info("Click on Add Button");
     }
 
+    @Step("Enter First Name: {0}")
     public void EnterFirstName(String FName) {
         wait.waitForElementToBeVisible(EmpFirstName, 10);
         EmpFirstName.sendKeys(FName);
         log.info("Enter First Name:" + FName);
     }
 
+    @Step("Enter Middle Name: {0}")
     public void EnterMiddleName(String MName) {
         wait.waitForElementToBeVisible(MiddleName, 10);
         MiddleName.sendKeys(MName);
         log.info("Enter Middle Name:" + MName);
     }
 
+    @Step("Enter Last Name: {0}")
     public void EnterLastName(String LName) {
         wait.waitForElementToBeVisible(LastName, 10);
         LastName.sendKeys(LName);
         log.info("Enter Last Name:" + LName);
     }
 
+    @Step("Select Vacancy: {0}")
     public void SelectVacancy(String VacancyType) throws InterruptedException {
         Thread.sleep(3000);
         selectDropdownByLabel("Vacancy", VacancyType);
     }
 
+    @Step("Enter Email: {0}")
     public void EnterEmail(String Email) throws InterruptedException {
         Thread.sleep(3000);
         enterTextByLabel("Email", Email);
     }
 
+    @Step("Enter Contact Number: {0}")
     public void EnterContactNo(String ContactNum) throws InterruptedException {
         Thread.sleep(3000);
         enterTextByLabel("Contact Number", ContactNum);
@@ -133,6 +142,7 @@ public class POM05_RecruitmentPage extends BasePageUtils {
         log.info("Upload the resume");
     }
 
+    @Step("Click on the save button")
     public void ClickOnSaveButtonn() throws InterruptedException {
         wait.waitForElementToBeClickable(SaveButtonn, 10);
         SaveButtonn.click();
@@ -140,10 +150,12 @@ public class POM05_RecruitmentPage extends BasePageUtils {
         Thread.sleep(3000);
     }
 
+    @Step("Click On Candidates Option")
     public void ClickOnCandidatesOpn(){
         clickButtonByText("Candidates");
     }
 
+    @Step("Enter Candidate Name: {0}")
     public void EnterCandidateName(String CanName) throws InterruptedException {
         wait.waitForElementToBeVisible(CandidateName, 10);
         CandidateName.sendKeys(CanName);
@@ -152,28 +164,31 @@ public class POM05_RecruitmentPage extends BasePageUtils {
         log.info("Enter Candidate Name:" + CanName);
     }
 
+    @Step("Click On Search Button")
     public void ClickOnSearchButtonn(){
         clickButtonByText("Search");
     }
 
+    @Step("Click on Eye button button")
     public void ClickOnEyeBtn() {
         wait.waitForElementToBeClickable(EyeButton, 10);
         EyeButton.click();
         log.info("Click on Eye button button");
     }
 
+    @Step("Click on Shortlist button")
     public void ClickOnShortlistBtn() throws InterruptedException {
         Thread.sleep(3000);
         wait.waitForElementToBeClickable(ShortlistButton, 10);
         ShortlistButton.click();
-        log.info("Click on Shortlist button button");
+        log.info("Click on Shortlist button");
     }
 
+    @Step("Click on the save button")
     public void SaveButn(){
         clickButtonByText("Save");
         log.info("Click on Save button");
     }
-
 }
 
 

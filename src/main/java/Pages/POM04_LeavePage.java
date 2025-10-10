@@ -2,6 +2,7 @@ package Pages;
 
 import Utils.BasePageUtils;
 import Utils.WaitUtils;
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -71,24 +72,28 @@ public class POM04_LeavePage extends BasePageUtils {
     @FindBy(xpath = "//div[@class='orangehrm-horizontal-padding orangehrm-vertical-padding']//span[@class='oxd-text oxd-text--span']")
     WebElement resultTxt;
 
+    @Step("Click on the leave tab")
     public void ClickOnLeaveTab() {
         wait.waitForElementToBeClickable(LeaveTab, 10);
         LeaveTab.click();
         log.info("Click on leave tab");
     }
 
+    @Step("Click on Entitlements Option")
     public void ClickOnEntitlementsOpn() {
         wait.waitForElementToBeClickable(Entitlements, 10);
         Entitlements.click();
         log.info("Click on Entitlements Option");
     }
 
+    @Step("Click on Add Entitlements Option")
     public void ClickOnAddEntitlementsOpn() {
         wait.waitForElementToBeClickable(AddEntitlements, 10);
         AddEntitlements.click();
         log.info("Click on Add Entitlements Option");
     }
 
+    @Step("Enter Employee Name: {0}")
     public void EnterEmployeeNAme(String EMPName) throws InterruptedException {
         wait.waitForElementToBeVisible(EmployeeNAme, 10);
         EmployeeNAme.sendKeys(EMPName);
@@ -97,26 +102,30 @@ public class POM04_LeavePage extends BasePageUtils {
         log.info("Enter Employee Name:" + EMPName);
     }
 
+    @Step("Select Leave type")
     public void SelectLeaveType(String LeaveType) {
         selectDropdownByLabel("Leave Type", LeaveType);
     }
 
+    @Step("Select Leave Period")
     public void SelectLeavePeriod(String LeavePeriod) {
         selectDropdownByLabel("Leave Period", LeavePeriod);
     }
 
+    @Step("Enter the Entitlement Value: {0}")
     public void EnterEntitlementValue(int Number) {
         wait.waitForElementToBeVisible(EntitlementValue, 10);
         EntitlementValue.sendKeys(String.valueOf(Number));
         log.info("Enter the Entitlement Value:" + Number);
     }
 
-//    public void ClickOnSaveButton() {
+    //    public void ClickOnSaveButton() {
 //        wait.waitForElementToBeClickable(SaVeButtonn, 10);
 //        SaVeButtonn.click();
 //        log.info("Click on save button");
 //    }
-    public void ClickOnSaveButton(){
+    @Step("Click on the save button")
+    public void ClickOnSaveButton() {
         clickButtonByText("Save");
         log.info("Click on save button");
     }
@@ -127,17 +136,20 @@ public class POM04_LeavePage extends BasePageUtils {
 //        log.info("Click on Confirm Button button");
 //    }
 
-    public void ClickOnConfirmBtn(){
+    @Step("Confirm Button")
+    public void ClickOnConfirmBtn() {
         clickButtonByText("Confirm");
-        log.info("Click on Confirm Button button");
+        log.info("Click on Confirm Button");
     }
 
+    @Step("Get Result Text")
     public void GetResultText() throws InterruptedException {
         Thread.sleep(3000);
         wait.waitForElementToBeVisible(resultTxt, 10);
         System.out.println("Leave result:" + resultTxt.getText());
     }
 
+    @Step("Fetch the Leave List")
     public void ListOFLeave() {
         wait.waitForVisibilityOfAllElements(ListOfLeave, 10);
         System.out.println("Total leave:" + ListOfLeave.size());

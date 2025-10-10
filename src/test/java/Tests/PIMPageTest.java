@@ -3,14 +3,23 @@ package Tests;
 import Base.BaseClass;
 import Pages.POC01_LoginPage;
 import Pages.POC03_PIMPage;
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 import org.testng.IRetryAnalyzer;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 
 public class PIMPageTest extends BaseClass {
 
-    @Test
+    @Test(description = "Verify Create & Update the Employee")
+    @Description("This test verifies the to create Create & Update the Employee")
+    @Severity(SeverityLevel.CRITICAL)
+    @Story("Employee Creations Feature")
+    @Parameters("Browser")
     public void VerifyPIMTab() throws InterruptedException, IOException {
         log.info("Test Started: Verify PIM Page.");
         POC01_LoginPage lp = new POC01_LoginPage(getDriver());

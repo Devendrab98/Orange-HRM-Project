@@ -54,14 +54,14 @@ public class POC01_LoginPage {
     @FindBy(xpath = "//p[text()='Invalid credentials']")
     WebElement InvalidErrorMsg;
 
-    @Step("Enter UserName: {arg0}")
+    @Step("Enter UserName:{0}")
     public void EnterUsername(String usernm) {
         wait.waitForElementToBeVisible(Username, 10);
         Username.sendKeys(usernm);
         log.info("Enter User Name:"+usernm);
     }
 
-    @Step("Enter UserName: {arg0}")
+    @Step("Enter Password:{0}")
     public void EnterPassword(String pass) {
         wait.waitForElementToBeVisible(Password, 10);
         Password.sendKeys(pass);

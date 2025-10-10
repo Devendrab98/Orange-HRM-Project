@@ -4,12 +4,21 @@ import Base.BaseClass;
 import Pages.POC01_LoginPage;
 import Pages.POC03_PIMPage;
 import Pages.POM04_LeavePage;
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 import lombok.extern.slf4j.Slf4j;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 public class LeavePageTest extends BaseClass {
 
-    @Test
+    @Test(description = "Verify Create the leave for the Employee")
+    @Description("This test verifies the to Create the leave for the Employee")
+    @Severity(SeverityLevel.CRITICAL)
+    @Story("leave Creations Feature")
+    @Parameters("Browser")
     public void VerifyLeaveTab() throws InterruptedException {
         log.info("Test Started: Verify Leave Page.");
         log.info("Admin User is now login into account.");

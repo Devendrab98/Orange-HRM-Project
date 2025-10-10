@@ -7,6 +7,7 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 public class RecruitmentPageTest extends BaseClass {
@@ -15,6 +16,7 @@ public class RecruitmentPageTest extends BaseClass {
     @Description("This test verifies Recruitment Page")
     @Severity(SeverityLevel.NORMAL)
     @Story("Recruitment Feature")
+    @Parameters("Browser")
     public void VerifyRecruitmentTab() throws InterruptedException {
         log.info("Test Started: Verify Recruitment Page.");
         log.info("Admin User is now login into account.");

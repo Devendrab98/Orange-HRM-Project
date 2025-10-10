@@ -9,7 +9,7 @@
     <test verbose="2" preserve-order="true" name="Admin Page test">
         <parameter name="Browser" value="chrome"/>
         <classes>
-            <class name="Tests.LoginPageTest"/>
+            <class name="Tests.AdminPageTest"/>
         </classes>
     </test>
 

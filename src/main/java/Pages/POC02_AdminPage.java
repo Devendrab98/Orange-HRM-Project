@@ -2,6 +2,7 @@ package Pages;
 
 import Utils.BasePageUtils;
 import Utils.WaitUtils;
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -99,22 +100,26 @@ public class POC02_AdminPage extends BasePageUtils {
     List<WebElement> SelectDropdown;
 
 
+    @Step("Click on the Admin tab")
     public void ClickOnAdmin() {
         wait.waitForElementToBeClickable(AdminTab, 10);
         AdminTab.click();
         log.info("Click on Admin Tab");
     }
 
+    @Step("Click on Add button from admin tab")
     public void ClickOnAddBtn() {
         wait.waitForElementToBeClickable(AddBtn, 10);
         AddBtn.click();
         log.info("Click on Add Button");
     }
 
+    @Step("Fetch the Admin page Url")
     public String GetAdminPageURL() {
         return driver.getCurrentUrl();
     }
 
+    @Step("Fetch the Admin page Url")
     public String GetAddUserPageURL() {
         return driver.getCurrentUrl();
     }
@@ -124,6 +129,7 @@ public class POC02_AdminPage extends BasePageUtils {
         UserRole.click();
     }
 
+    @Step("Select the User Role dropdown value: {0}")
     public void ClickOnUserRoleDropDown(String UserRoleValue){
         selectDropdownByLabel("User Role", UserRoleValue);
         log.info("Click on User Role Dropdown");
@@ -141,6 +147,7 @@ public class POC02_AdminPage extends BasePageUtils {
 
     }
 
+    @Step("Select the Status dropdown value: {0}")
     public void ClickOnStatusDropDown(String StatusValue){
         selectDropdownByLabel("Status",StatusValue);
         log.info("Click on Status Dropdown");
@@ -158,10 +165,12 @@ public class POC02_AdminPage extends BasePageUtils {
 //        log.info("Enter Password:"+pass);
 //    }
 
+    @Step("Enter Password: {0}")
     public void EnterPasword(String Password){
         enterTextByLabel("Password", Password);
     }
 
+    @Step("Enter Employee name: {0}")
     public void EnterEmployeeName(String EnpName) throws InterruptedException {
         wait.waitForElementToBeVisible(EmployeeNm, 10);
         EmployeeNm.sendKeys(EnpName);
@@ -177,6 +186,7 @@ public class POC02_AdminPage extends BasePageUtils {
 //        log.info("Enter User name:"+UsrName);
 //    }
 
+    @Step("Enter User Name: {0}")
     public void EnterUsername(String UsrName) throws InterruptedException {
         Thread.sleep(3000);
         enterTextByLabel("Username", UsrName);
@@ -189,6 +199,7 @@ public class POC02_AdminPage extends BasePageUtils {
 //        log.info("Enter Confirm Password:"+Conpass);
 //    }
 
+    @Step("Enter Confirm Password: {0}")
     public void EnterConfirmPassword(String Conpass){
         enterTextByLabel("Confirm Password", Conpass);
     }
@@ -201,6 +212,7 @@ public class POC02_AdminPage extends BasePageUtils {
 //        log.info("Click on the save button to create user");
 //    }
 
+    @Step("Click on the save button to create user")
     public void ClickOnSaveButton() throws InterruptedException {
         Thread.sleep(5000);
         clickButtonByText("Save");
@@ -214,11 +226,13 @@ public class POC02_AdminPage extends BasePageUtils {
 //        log.info("Enter the created user name:"+UserNameAd);
 //    }
 
-    public void EnterUserNmForSearch(String UsrName) throws InterruptedException {
+    @Step("Enter User Name: {0}")
+    public void EnterUserNmForSearch(String UserNameAd) throws InterruptedException {
         Thread.sleep(2000);
-        enterTextByLabel("Username", UsrName);
+        enterTextByLabel("Username", UserNameAd);
     }
 
+    @Step("Click on search button")
     public void ClickOnSearchBtn() throws InterruptedException {
         wait.waitForElementToBeClickable(SearchBtn, 10);
         SearchBtn.click();
@@ -227,6 +241,7 @@ public class POC02_AdminPage extends BasePageUtils {
         log.info("Click on search button");
     }
 
+    @Step("Fetch the user list")
     public String UserList() throws InterruptedException {
         Thread.sleep(3000);
         wait.waitForVisibilityOfAllElements(ListOfUsers, 10);
@@ -239,6 +254,7 @@ public class POC02_AdminPage extends BasePageUtils {
         return sb.toString();
     }
 
+    @Step("Delete the User")
     public void DeleteUser() {
         wait.waitForElementToBeClickable(DeleteIcon, 10).click();
         wait.waitForElementToBeClickable(DeleteBtn, 10).click();
@@ -254,13 +270,9 @@ public class POC02_AdminPage extends BasePageUtils {
 //        }
     }
 
+    @Step("Print no result text")
     public String PrintNoResult() {
         wait.waitForElementToBeVisible(NoResultText, 10);
         return NoResultText.getText();
-    }
-
-    public void ClickOnUserRoleDropD() {
-        wait.waitForElementToBeClickable(UserRole, 10).click();
-        wait.waitForElementToBeClickable(AdminOpt, 10).click();
     }
 }
