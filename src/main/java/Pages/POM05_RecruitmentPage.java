@@ -151,8 +151,10 @@ public class POM05_RecruitmentPage extends BasePageUtils {
     }
 
     @Step("Click On Candidates Option")
-    public void ClickOnCandidatesOpn(){
-        clickButtonByText("Candidates");
+    public void ClickOnCandidatesOpn() throws InterruptedException {
+        Thread.sleep(3000);
+        wait.waitForElementToBeClickable(Candidates, 10);
+        Candidates.click();
     }
 
     @Step("Enter Candidate Name: {0}")

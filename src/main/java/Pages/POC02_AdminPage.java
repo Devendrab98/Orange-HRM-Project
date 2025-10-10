@@ -214,11 +214,13 @@ public class POC02_AdminPage extends BasePageUtils {
 
     @Step("Click on the save button to create user")
     public void ClickOnSaveButton() throws InterruptedException {
-        Thread.sleep(5000);
+        Thread.sleep(2000);
         clickButtonByText("Save");
         log.info("Click on the save button to create user");
+        Thread.sleep(3000);
     }
 
+//    @Step("Enter Created User Name: {0}")
 //    public void EnterUserNmForSearch(String UserNameAd) throws InterruptedException {
 //        wait.waitForElementToBeVisible(UserNa, 10);
 //        UserNa.sendKeys(UserNameAd);
@@ -226,9 +228,9 @@ public class POC02_AdminPage extends BasePageUtils {
 //        log.info("Enter the created user name:"+UserNameAd);
 //    }
 
-    @Step("Enter User Name: {0}")
+    @Step("Enter Created User Name: {0}")
     public void EnterUserNmForSearch(String UserNameAd) throws InterruptedException {
-        Thread.sleep(2000);
+        Thread.sleep(3000);
         enterTextByLabel("Username", UserNameAd);
     }
 

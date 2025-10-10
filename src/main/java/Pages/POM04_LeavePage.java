@@ -102,12 +102,12 @@ public class POM04_LeavePage extends BasePageUtils {
         log.info("Enter Employee Name:" + EMPName);
     }
 
-    @Step("Select Leave type")
+    @Step("Select Leave type: {0}")
     public void SelectLeaveType(String LeaveType) {
         selectDropdownByLabel("Leave Type", LeaveType);
     }
 
-    @Step("Select Leave Period")
+    @Step("Select Leave Period: {0}")
     public void SelectLeavePeriod(String LeavePeriod) {
         selectDropdownByLabel("Leave Period", LeavePeriod);
     }

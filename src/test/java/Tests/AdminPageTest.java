@@ -54,7 +54,7 @@ public class AdminPageTest extends BaseClass {
         ad.ClickOnUserRoleDropDown("Admin");
         ad.ClickOnStatusDropDown("Enabled");
         ad.EnterPasword("Pass@123");
-        ad.EnterEmployeeName("smith");
+        ad.EnterEmployeeName("Smith");
         ad.EnterUsername("Rahulya");
         ad.EnterConfirmPassword("Pass@123");
         ad.ClickOnSaveButton();

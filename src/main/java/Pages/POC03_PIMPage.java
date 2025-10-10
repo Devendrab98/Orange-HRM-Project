@@ -241,7 +241,7 @@ public class POC03_PIMPage extends BasePageUtils {
         log.info("Enter Employee id:" + EmplyID);
     }
 
-    @Step("Enter Employee Name")
+    @Step("Enter Employee Name: {0}")
     public void EmployeeNameField(String EmplyName) throws InterruptedException {
         wait.waitForElementToBeVisible(EmployeeNamefl, 10);
         Thread.sleep(5000);
@@ -271,24 +271,25 @@ public class POC03_PIMPage extends BasePageUtils {
         log.info("Click on Job option");
     }
 
-    @Step("Select Job Title")
-    public void SelectJobTitle(String SelectedJobTitle) throws InterruptedException {
-        Thread.sleep(3000);
-        wait.waitForElementToBeClickable(JobTitle, 10).click();
-
-        // Select the option
-        WebElement SelectedOption = wait.waitForElementToBeClickableBy(
-                By.xpath("//div[@role='listbox']//span[text()='" + SelectedJobTitle + "']"), 10);
-
-        SelectedOption.click();
-        System.out.println("Selected Job Title: " + SelectedOption);
-    }
-
-//    public void ClickonSaveBtn() {
-//        wait.waitForElementToBeClickable(SaveBtn, 10);
-//        SaveBtn.click();
-//        log.info("Click on Save button");
+//    @Step("Select Job Title: {0}")
+//    public void SelectJobTitle(String SelectedJobTitle) throws InterruptedException {
+//        Thread.sleep(3000);
+//        wait.waitForElementToBeClickable(JobTitle, 10).click();
+//
+//        // Select the option
+//        WebElement SelectedOption = wait.waitForElementToBeClickableBy(
+//                By.xpath("//div[@role='listbox']//span[text()='" + SelectedJobTitle + "']"), 10);
+//
+//        SelectedOption.click();
+//        System.out.println("Selected Job Title: " + SelectedOption);
 //    }
+
+    @Step("Select the Job Title dropdown value: {0}")
+    public void SelectJobTitle(String SelectedJobTitle){
+        selectDropdownByLabel("Job Title", SelectedJobTitle);
+        log.info("Click on User Job Title Dropdown");
+        log.info("Select the 'QA Engineer' option from the User role dropdown");
+    }
 
     @Step("Click on Save button to update the user information")
     public void ClickonSaveBtn() throws IOException {
