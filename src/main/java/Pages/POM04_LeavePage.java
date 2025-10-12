@@ -30,47 +30,47 @@ public class POM04_LeavePage extends BasePageUtils {
 
     // Find Leave tab element
     @FindBy(xpath = "//span[text()='Leave']")
-    WebElement LeaveTab;
+    private WebElement LeaveTab;
 
     // Find Entitlements dropdown element
     @FindBy(xpath = "//span[text()='Entitlements ']")
-    WebElement Entitlements;
+    private WebElement Entitlements;
 
     // Find Add Entitlements dropdown element
     @FindBy(xpath = "//a[text()='Add Entitlements']")
-    WebElement AddEntitlements;
+    private WebElement AddEntitlements;
 
     // Find Employee name element
     @FindBy(xpath = "//input[@placeholder='Type for hints...']")
-    WebElement EmployeeNAme;
+    private WebElement EmployeeNAme;
 
     // Find Leave Type element
     @FindBy(xpath = "//label[text()='Leave Type']/../following-sibling::div//div[text()='-- Select --']")
-    List<WebElement> LeaveType;
+    private List<WebElement> LeaveType;
 
     // Find LeavePeriod element
     @FindBy(xpath = "//label[text()='Leave Period']/../following-sibling::div//div[text()='-- Select --']")
-    List<WebElement> LeavePeriod;
+    private List<WebElement> LeavePeriod;
 
     // Find EntitlementValue element
     @FindBy(xpath = "//label[text()='Entitlement']/../following-sibling::div//input[@class='oxd-input oxd-input--active']")
-    WebElement EntitlementValue;
+    private WebElement EntitlementValue;
 
     // Find the save button element
     @FindBy(xpath = "//button[text()=' Save ']")
-    WebElement SaVeButtonn;
+    private WebElement SaVeButtonn;
 
     // Find the Confirm Button after add leave for employee
     @FindBy(xpath = "//button[text()=' Confirm ']")
-    WebElement ConfirmButton;
+    private WebElement ConfirmButton;
 
     // Find User leave List from the Leave Tab,
     @FindBy(xpath = "//div[@class='oxd-table']/div[@class='oxd-table-body']")
-    List<WebElement> ListOfLeave;
+    private List<WebElement> ListOfLeave;
 
     // Find the result text element
     @FindBy(xpath = "//div[@class='orangehrm-horizontal-padding orangehrm-vertical-padding']//span[@class='oxd-text oxd-text--span']")
-    WebElement resultTxt;
+    private WebElement resultTxt;
 
     @Step("Click on the leave tab")
     public void ClickOnLeaveTab() {

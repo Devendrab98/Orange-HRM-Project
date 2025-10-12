@@ -27,61 +27,63 @@ public class POM05_RecruitmentPage extends BasePageUtils {
 
     // Find Leave tab element
     @FindBy(xpath = "//span[text()='Recruitment']")
-    WebElement RecruitmentTab;
+    private WebElement RecruitmentTab;
 
     // Find Add button Element
     @FindBy(xpath = "//button[@class='oxd-button oxd-button--medium oxd-button--secondary']")
-    WebElement Addbtn;
+    private WebElement Addbtn;
 
     // Find Employee Full First Name field element
     @FindBy(name = "firstName")
-    WebElement EmpFirstName;
+    private WebElement EmpFirstName;
 
     // Find Employee Middle Name field element
     @FindBy(name = "middleName")
-    WebElement MiddleName;
+    private WebElement MiddleName;
 
     // Find Employee Last Name field element
     @FindBy(name = "lastName")
-    WebElement LastName;
+    private WebElement LastName;
 
     // Find Employee Last Name field element
     @FindBy(name = "lastName")
-    WebElement Email;
+    private WebElement Email;
 
     // Find the resume upload element
 //    @FindBy(xpath = "//input[@type='file']")
-//    WebElement ResumeUpld;
+//    private WebElement ResumeUpld;
 
     private  By resumeUpload = By.xpath("//input[@type='file']");
 
+    //label[text()='Resume']/../following-sibling::div//input[@type='file']
+
     // Find the save button element
     @FindBy(xpath = "//button[text()=' Save ']")
-    WebElement SaveButtonn;
+    private WebElement SaveButtonn;
 
     // Find the Candidates option element
     @FindBy(xpath = "//a[text()='Candidates']")
-    WebElement Candidates;
+    private WebElement Candidates;
 
     // Find Employee name field element
     @FindBy(xpath = "//label[text()='Candidate Name']/../following-sibling::div//input[@placeholder='Type for hints...']")
-    WebElement CandidateName;
+    private WebElement CandidateName;
 
     // Find the Search button Element on PIM > Employee list page
     @FindBy(xpath = "//button[text()=' Search ']")
-    WebElement SearchButtn;
+    private WebElement SearchButtn;
 
     // Find the Edit button element
     @FindBy(xpath = "//i[@class='oxd-icon bi-eye-fill']") //
-    WebElement EyeButton;
+    private WebElement EyeButton;
 
     // Find the Edit button element
     @FindBy(xpath = "//button[text()=' Shortlist ']")
-    WebElement ShortlistButton;
+    private WebElement ShortlistButton;
 
     // Find the save button element
     @FindBy(xpath = "//button[text()=' Save ']")
-    WebElement SaveButton;
+    private WebElement SaveButton;
 
     @Step("Click on the Recruitment tab")
     public void ClickOnRecruitmentTab() {

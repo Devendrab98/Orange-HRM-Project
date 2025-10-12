@@ -29,75 +29,75 @@ public class POC02_AdminPage extends BasePageUtils {
 
     // Find AdminTab Element
     @FindBy(xpath = "//span[text()='Admin']")
-    WebElement AdminTab;
+    private WebElement AdminTab;
 
     // Find Add button Element
     @FindBy(xpath = "//button[@class='oxd-button oxd-button--medium oxd-button--secondary']")
-    WebElement AddBtn;
+    private WebElement AddBtn;
 
     // Add User > Find User Role element
     @FindBy(xpath = "//label[text()='User Role']/../following-sibling::div//div[text()='-- Select --']")
-    WebElement UserRole;
+    private WebElement UserRole;
 
     // User Role dropdown => Select Admin, //span[text()='Admin'] ,  //div[@role='listbox']//span[normalize-space()='Admin']
     @FindBy(xpath = "//div[@role='listbox']//span[normalize-space()='Admin']")
-    WebElement AdminOpt;
+    private WebElement AdminOpt;
 
     // Find Status dropdown element
     @FindBy(xpath = "//label[text()='Status']/../following-sibling::div//div[text()='-- Select --']")
-    WebElement StatusDropD;
+    private WebElement StatusDropD;
 
     // Status Dropdown => Select Enable value
     @FindBy(xpath = "//div[@role='listbox']//span[text()='Enabled']")
-    WebElement EnableOpt;
+    private WebElement EnableOpt;
 
     // Find Password field element
     @FindBy(xpath = "//label[text()='Password']/../following-sibling::div//input[@type='password']")
-    WebElement Passwrd;
+    private WebElement Passwrd;
 
     // Find Employee name element
     @FindBy(xpath = "//input[@placeholder='Type for hints...']")
-    WebElement EmployeeNm;
+    private WebElement EmployeeNm;
 
     // Find Username Element
     @FindBy(xpath = "//label[text()='Username']/../following-sibling::div//input[@class='oxd-input oxd-input--active']")
-    WebElement UserNam;
+    private WebElement UserNam;
 
     // Find Confirm Password Element
     @FindBy(xpath = "//label[text()='Confirm Password']/../following-sibling::div//input[@type='password']")
-    WebElement ConfimPass;
+    private WebElement ConfimPass;
 
     // Find Save button Element
     @FindBy(xpath = "//button[text()=' Save ']")
-    WebElement SaveButton;
+    private WebElement SaveButton;
 
     // Find Username Element on Admin page
     @FindBy(xpath = "//label[text()='Username']/../following-sibling::div//input[@class='oxd-input oxd-input--active']")
-    WebElement UserNa;
+    private WebElement UserNa;
 
     // Find the Search button Element on Admin page
     @FindBy(xpath = "//button[text()=' Search ']")
-    WebElement SearchBtn;
+    private WebElement SearchBtn;
 
     // Find Created User List from Admin Tab, //div[@class='oxd-table']/div[@class='oxd-table-body'], //div[@role='table']/div[@role='row']
     @FindBy(xpath = "//div[@class='oxd-table']/div[@class='oxd-table-body']")
-    List<WebElement> ListOfUsers;
+    private List<WebElement> ListOfUsers;
 
     // Find the element of Delete icon
     @FindBy(xpath = "//i[@class='oxd-icon bi-trash']")
-    WebElement DeleteIcon;
+    private WebElement DeleteIcon;
 
     // Find the element of Delete button from delete user popup
     @FindBy(xpath = "//button[text()=' Yes, Delete ']")
-    WebElement DeleteBtn;
+    private WebElement DeleteBtn;
 
     // Find the no result text element after delete the user
     @FindBy(xpath = "//span[text()='No Records Found']")
-    WebElement NoResultText;
+    private WebElement NoResultText;
 
     // Fetch the list => Ignore for now
     @FindBy(xpath = "//div[text()='-- Select --']")
-    List<WebElement> SelectDropdown;
+    private List<WebElement> SelectDropdown;
 
 
     @Step("Click on the Admin tab")

@@ -34,95 +34,95 @@ public class POC03_PIMPage extends BasePageUtils {
 
     // Find PIM tab element
     @FindBy(xpath = "//span[text()='PIM']")
-    WebElement PimTab;
+    private WebElement PimTab;
 
     // Find Add button Element
     @FindBy(xpath = "//button[@class='oxd-button oxd-button--medium oxd-button--secondary']")
-    WebElement AddButton;
+    private WebElement AddButton;
 
     // Find PIM tab tile element
     @FindBy(xpath = "//h6[text()='PIM']")
-    WebElement PIMTabTitle;
+    private WebElement PIMTabTitle;
 
     // Find Profile picture element
     @FindBy(xpath = "//div[@class='oxd-input-group oxd-input-field-bottom-space']//input[@type='file']")
-    WebElement Profile;
+    private WebElement Profile;
 
     // Find Employee Full First Name field element
     @FindBy(name = "firstName")
-    WebElement EmpFirstName;
+    private WebElement EmpFirstName;
 
     // Find Employee Middle Name field element
     @FindBy(name = "middleName")
-    WebElement MiddleName;
+    private WebElement MiddleName;
 
     // Find Employee Last Name field element
     @FindBy(name = "lastName")
-    WebElement LastName;
+    private WebElement LastName;
 
     // Find Employee ID field element on Create employee page
     @FindBy(xpath = "//label[text()='Employee Id']/../following-sibling::div//input[@class='oxd-input oxd-input--active']")
-    WebElement EmpID;
+    private WebElement EmpID;
 
     // Find the Create login details switch
     @FindBy(xpath = "//span[@class='oxd-switch-input oxd-switch-input--active --label-right']")
-    WebElement CreateLogin;
+    private WebElement CreateLogin;
 
     // Find the User name element under create login details
     @FindBy(xpath = "//label[text()='Username']/../following-sibling::div//input[@class='oxd-input oxd-input--active']")
-    WebElement UserNAme;
+    private WebElement UserNAme;
 
     // Find the Password field element
     @FindBy(xpath = "//label[text()='Password']/../following-sibling::div//input[@type='password']")
-    WebElement Password;
+    private WebElement Password;
 
     // Find the Confirm Password field element
     @FindBy(xpath = "//label[text()='Confirm Password']/../following-sibling::div//input[@type='password']")
-    WebElement ConfirmPassword;
+    private WebElement ConfirmPassword;
 
     // Find the save button element
     @FindBy(xpath = "//button[text()=' Save ']")
-    WebElement SaveButtonn;
+    private WebElement SaveButtonn;
 
     // Find Employee list option element
     @FindBy(xpath = "//a[text()='Employee List']")
-    WebElement EmpListopt;
+    private WebElement EmpListopt;
 
     // Find Employee ID field element on Employee list page
     @FindBy(xpath = "//label[@class='oxd-label']/../following-sibling::div//input[@class='oxd-input oxd-input--active']")
-    WebElement EmployeeIDD;
+    private WebElement EmployeeIDD;
 
     // Find Employee name field element
     @FindBy(xpath = "//label[text()='Employee Name']/../following-sibling::div//input[@placeholder='Type for hints...']")
-    WebElement EmployeeNamefl;
+    private WebElement EmployeeNamefl;
 
     // Find the Search button Element on PIM > Employee list page
     @FindBy(xpath = "//button[text()=' Search ']")
-    WebElement SearchButtn;
+    private WebElement SearchButtn;
 
     // Find the Edit button element
     @FindBy(xpath = "//i[@class='oxd-icon bi-pencil-fill']")
-    WebElement EditButton;
+    private WebElement EditButton;
 
     // Find the Job option Element
     @FindBy(xpath = "//a[normalize-space()='Job']")
-    WebElement JobOption;
+    private WebElement JobOption;
 
     // Find Job title dropdown element
     @FindBy(xpath = "//label[text()='Job Title']/../following-sibling::div//div[text()='-- Select --']")
-    WebElement JobTitle;
+    private WebElement JobTitle;
 
     // Find the dropdown option element
     @FindBy(xpath = "//div[@role='listbox']")
-    WebElement DropdownOptions;
+    private WebElement DropdownOptions;
 
     // Find the save button element from job option
     @FindBy(xpath = "//button[text()=' Save ']")
-    WebElement SaveBtn;
+    private WebElement SaveBtn;
 
     // Find the Employee name field element to search created user
     @FindBy(xpath = "//label[text()='Employee Name']/../following-sibling::div//input[@placeholder='Type for hints...']")
-    WebElement EmployeeName;
+    private WebElement EmployeeName;
 
 
     @Step("Click on the PIM tab")

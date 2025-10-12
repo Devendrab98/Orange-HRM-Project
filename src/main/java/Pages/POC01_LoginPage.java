@@ -28,31 +28,31 @@ public class POC01_LoginPage {
 
     // Find Username
     @FindBy(xpath = "//input[@name='username']")
-    WebElement Username;
+    private WebElement Username;
 
     // Find Password
     @FindBy(name = "password")
-    WebElement Password;
+    private WebElement Password;
 
     // Find Login Button
     @FindBy(xpath = "//button[@type='submit']")
-    WebElement loginbtn;
+    private WebElement loginbtn;
 
     // Find Dashboard text
     @FindBy(xpath = "//h6[text()='Dashboard']")
-    WebElement Title;
+    private WebElement Title;
 
     // Find Profile dropdown Element
     @FindBy(xpath = "//p[@class='oxd-userdropdown-name']")
-    WebElement Profile;
+    private WebElement Profile;
 
     // Find Logout Element
     @FindBy(xpath = "//ul[@class='oxd-dropdown-menu']//a[text()='Logout']")
-    WebElement Logout;
+    private WebElement Logout;
 
     // Find Username
     @FindBy(xpath = "//p[text()='Invalid credentials']")
-    WebElement InvalidErrorMsg;
+    private WebElement InvalidErrorMsg;
 
     @Step("Enter UserName:{0}")
     public void EnterUsername(String usernm) {
@@ -92,7 +92,7 @@ public class POC01_LoginPage {
     public void ClickOnLogout() {
         wait.waitForElementToBeClickable(Logout, 10);
         Logout.click();
-        log.info("Click on Logout button");
+        log.info("Clicked on Logout button");
     }
 
     public String getTitle() {
@@ -100,9 +100,9 @@ public class POC01_LoginPage {
     }
 
     @Step("Login with invalid Credentials username:{0} and password:{1}")
-    public void InvalidLogin(String Usernamee, String PassWord) {
-        wait.waitForElementToBeVisible(Username, 10).sendKeys(Usernamee);
-        wait.waitForElementToBeVisible(Password, 10).sendKeys(PassWord);
+    public void InvalidLogin(String usernm, String pass) {
+        wait.waitForElementToBeVisible(Username, 10).sendKeys(usernm);
+        wait.waitForElementToBeVisible(Password, 10).sendKeys(pass);
         wait.waitForElementToBeClickable(loginbtn, 10).click();
         wait.waitForElementToBeVisible(InvalidErrorMsg, 10);
         System.out.println("Error message is: " + InvalidErrorMsg.getText());
