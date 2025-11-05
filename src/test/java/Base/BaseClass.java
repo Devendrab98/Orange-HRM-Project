@@ -6,7 +6,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -53,15 +55,30 @@ public class BaseClass {
 
     private WebDriver initializeBrowser(String browser) {
 
+        // Check if headless mode is enabled via Jenkins or Maven
+        boolean isHeadless = System.getProperty("headless", "false").equalsIgnoreCase("true");
+
         switch (browser.toLowerCase()) {
             case "chrome":
-                webDriver = new ChromeDriver();
-                log.info("Chrome browser launched successfully.");
+                ChromeOptions chromeOptions = new ChromeOptions();
+
+                if (isHeadless) {
+                    chromeOptions.addArguments("--headless=new");
+                    chromeOptions.addArguments("--disable-gpu");
+                    chromeOptions.addArguments("--window-size=1920,1080");
+                }
+                webDriver = new ChromeDriver(chromeOptions);
+                log.info("Chrome browser launched successfully."+isHeadless);
                 break;
 
             case "firefox":
+                FirefoxOptions firefoxOptions = new FirefoxOptions();
+
+                if (isHeadless) {
+                    firefoxOptions.addArguments("--headless");
+                }
                 webDriver = new FirefoxDriver();
-                log.info("Firefox browser launched successfully.");
+                log.info("Firefox browser launched successfully."+isHeadless);
                 break;
 
             default:
