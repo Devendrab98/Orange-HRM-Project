@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite" parallel="tests" thread-count="5">
+<suite name="All Test Suite" preserve-order="true" parallel="none">
     <listeners>
         <!-- 🔹 Add the Allure listener here -->
         <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
     </listeners>
 
-    <test verbose="2" preserve-order="true" name="Admin Page test">
+    <test verbose="2" preserve-order="true" name="All Page test">
         <parameter name="Browser" value="chrome"/>
         <classes>
             <class name="Tests.LoginPageTest"/>
@@ -17,10 +17,10 @@
         </classes>
     </test>
 
-    <!--    <test verbose="2" preserve-order="true" name="Login Test">-->
-    <!--        <parameter name="Browser" value="firefox"/>-->
-    <!--        <classes>-->
-    <!--            <class name="Tests.LoginPageTest"/>-->
-    <!--        </classes>-->
-    <!--    </test>-->
+<!--        <test verbose="2" preserve-order="true" name="Admin Page test">-->
+<!--            <parameter name="Browser" value="chrome"/>-->
+<!--            <classes>-->
+<!--                <class name="Tests.AdminPageTest"/>-->
+<!--            </classes>-->
+<!--        </test>-->
 </suite>
