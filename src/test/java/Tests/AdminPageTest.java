@@ -3,6 +3,7 @@ package Tests;
 import Base.BaseClass;
 import Pages.POC01_LoginPage;
 import Pages.POC02_AdminPage;
+import Pages.POC03_PIMPage;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
@@ -30,6 +31,19 @@ public class AdminPageTest extends BaseClass {
         lp.ClickOnLoginButton();
         lp.GetTitle();
 
+        POC03_PIMPage Pm= new POC03_PIMPage(getDriver());
+        Pm.ClickOnPimTab();
+        Pm.ClickOnAddBtn();
+        Pm.GetPimTabTitle();
+        Pm.EnterFirstName("Sam");
+        Pm.EnterMiddleName("Ron");
+        Pm.EnterLastName("Wilson");
+        Pm.EnterEmployeeID("0007");
+        Pm.EnableCreateLoginSwitch();
+        Pm.EnterUsername("Sam123");
+        Pm.EnterPassword("Sam@1234", "Sam@1234" );
+        Pm.ClickOnSaveButton();
+
         POC02_AdminPage ad = new POC02_AdminPage(getDriver());
         ad.ClickOnAdmin();
 
@@ -54,7 +68,7 @@ public class AdminPageTest extends BaseClass {
         ad.ClickOnUserRoleDropDown("Admin");
         ad.ClickOnStatusDropDown("Enabled");
         ad.EnterPasword("Pass@123");
-        ad.EnterEmployeeName("Smith");
+        ad.EnterEmployeeName("Sam Ron Wilson");
         ad.EnterUsername("Rahulya");
         ad.EnterConfirmPassword("Pass@123");
         ad.ClickOnSaveButton();

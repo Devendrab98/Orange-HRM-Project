@@ -105,7 +105,7 @@ public class POC01_LoginPage {
         wait.waitForElementToBeVisible(Password, 10).sendKeys(pass);
         wait.waitForElementToBeClickable(loginbtn, 10).click();
         wait.waitForElementToBeVisible(InvalidErrorMsg, 10);
-        System.out.println("Error message is: " + InvalidErrorMsg.getText());
+        log.info("Error message is: " + InvalidErrorMsg.getText());
 
     }
 }

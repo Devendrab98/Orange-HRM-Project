@@ -213,12 +213,6 @@ public class POC03_PIMPage extends BasePageUtils {
         log.info("Enter Confirm Password:" + ConfirmPass);
     }
 
-//    public void ClickonSaveButtonn() {
-//        wait.waitForElementToBeClickable(SaveButtonn, 10);
-//        SaveButtonn.click();
-//        log.info("Click on save button");
-//    }
-
     @Step("Click on the save button")
     public void ClickOnSaveButton(){
         clickButtonByText("Save");
