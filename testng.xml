@@ -4,6 +4,7 @@
     <listeners>
         <!-- 🔹 Add the Allure listener here -->
         <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
+        <listener class-name="Utils.ExtendListenerClass"/>
     </listeners>
 
 <!--    <test verbose="2" preserve-order="true" name="All Page test">-->
