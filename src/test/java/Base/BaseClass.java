@@ -56,19 +56,27 @@ public class BaseClass {
     private WebDriver initializeBrowser(String browser) {
 
         // Check if headless mode is enabled via Jenkins or Maven
-        boolean isHeadless = System.getProperty("headless", "false").equalsIgnoreCase("true");
+        // Detect if running in CI (GitHub Actions)
+        boolean isCI = System.getenv("GITHUB_ACTIONS") != null;
+
+        // Headless flag from Maven or CI environment
+        boolean isHeadless = isCI || System.getProperty("headless", "false").equalsIgnoreCase("true");
 
         switch (browser.toLowerCase()) {
             case "chrome":
                 ChromeOptions chromeOptions = new ChromeOptions();
 
+                // Required flags for CI (GitHub Actions)
                 if (isHeadless) {
                     chromeOptions.addArguments("--headless=new");
+                    chromeOptions.addArguments("--no-sandbox");
+                    chromeOptions.addArguments("--disable-dev-shm-usage");
                     chromeOptions.addArguments("--disable-gpu");
                     chromeOptions.addArguments("--window-size=1920,1080");
                 }
+
                 webDriver = new ChromeDriver(chromeOptions);
-                log.info("Chrome browser launched successfully."+isHeadless);
+                log.info("Chrome browser launched. Headless: " + isHeadless);
                 break;
 
             case "firefox":
@@ -77,8 +85,9 @@ public class BaseClass {
                 if (isHeadless) {
                     firefoxOptions.addArguments("--headless");
                 }
-                webDriver = new FirefoxDriver();
-                log.info("Firefox browser launched successfully."+isHeadless);
+
+                webDriver = new FirefoxDriver(firefoxOptions);
+                log.info("Firefox browser launched. Headless: " + isHeadless);
                 break;
 
             default:
