@@ -68,6 +68,6 @@ jobs:
             Thanks,
             Automation Bot
           attachments: |
-            test-output/emailable-report.html
-            test-output/index.html
+            test-output/**
+            target/surefire-reports/**
             screenshots/**
