@@ -1,0 +1,70 @@
+name: Daily Selenium Test Run
+
+on:
+  schedule:
+    - cron: "30 5 * * *"   # 11:00 AM IST
+  workflow_dispatch:
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@v1
+
+      - name: Setup ChromeDriver
+        uses: nanasess/setup-chromedriver@v2
+
+      - name: Run Tests with Maven
+        run: |
+          mvn clean test -Dsurefire.suiteXmlFiles=testng.xml
+
+      - name: Upload TestNG Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: TestNG-Report
+          path: test-output/
+
+      - name: Upload screenshots
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: Screenshots
+          path: screenshots/  # adjust if your screenshot folder is different
+
+      - name: Send Email Notification (PASS/FAIL)
+        if: always()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: "Daily Test Result: ${{ job.status }}"
+          to: ${{ secrets.EMAIL_RECEIVER }}
+          from: ${{ secrets.EMAIL_USERNAME }}
+          body: |
+            Hello,
+
+            The daily automation run has completed.
+
+            Status: ${{ job.status }}
+
+            Reports are attached.
+
+            Thanks,
+            Automation Bot
+          attachments: |
+            test-output/emailable-report.html
+            test-output/index.html
+            screenshots/**
