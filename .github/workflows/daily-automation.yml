@@ -29,7 +29,7 @@ jobs:
         run: |
           mvn clean test -Dsurefire.suiteXmlFiles=testng.xml
 
-        - name: Upload TestNG Report
+      - name: Upload TestNG Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -43,7 +43,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Screenshots
-          path: screenshots/   # adjust if your screenshot folder is different
+          path: screenshots/
 
       - name: Send Email Notification (PASS/FAIL)
         if: always()
