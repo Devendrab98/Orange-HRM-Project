@@ -38,12 +38,12 @@ jobs:
             test-output/
             target/surefire-reports/
 
-      - name: Upload screenshots
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: Screenshots
-          path: screenshots/
+      # - name: Upload screenshots
+      #   if: always()
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: Screenshots
+      #     path: screenshots/
 
       - name: Send Email Notification (PASS/FAIL)
         if: always()
