@@ -1,14 +1,14 @@
 package Tests;
 
 import Base.BaseClass;
-import Pages.POC01_LoginPage;
-import Pages.POC03_PIMPage;
+import Pages.POM01_LoginPage;
+import Pages.POM03_PIMPage;
 import Pages.POM04_LeavePage;
+import Utils.TestDataUtils;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
-import lombok.extern.slf4j.Slf4j;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -24,7 +24,7 @@ public class LeavePageTest extends BaseClass {
         log.info("Admin User is now login into account.");
 
         // --------- Login as Admin ---------
-        POC01_LoginPage lp = new POC01_LoginPage(getDriver());
+        POM01_LoginPage lp = new POM01_LoginPage(getDriver());
         lp.EnterUsername("Admin");
         lp.EnterPassword("admin123");
         lp.ClickOnLoginButton();
@@ -33,21 +33,24 @@ public class LeavePageTest extends BaseClass {
         // --------- Generate Unique Username ---------
         String uniqueUser = "Sam" + System.currentTimeMillis();
 
+        // --------- Generate Unique EmployeeId ---------
+        String employeeId = TestDataUtils.UniqueID();
+
         // --------- Create Employee ---------
-        POC03_PIMPage Pm = new POC03_PIMPage(getDriver());
+        POM03_PIMPage Pm = new POM03_PIMPage(getDriver());
         log.info("Admin User in now on PIM Page to create the Employee");
         Pm.ClickOnPimTab();
         Pm.ClickOnAddBtn();
         Pm.GetPimTabTitle();
         Pm.EnterFirstName("Sam");
-        Pm.EnterMiddleName("Ron");
+        Pm.EnterMiddleName("Bob");
         Pm.EnterLastName("Wilson");
-        Pm.EnterEmployeeID("0007");
+        Pm.EnterEmployeeID(employeeId);
         Pm.EnableCreateLoginSwitch();
         Pm.EnterUsername(uniqueUser);
         Pm.EnterPassword("Sam@1234", "Sam@1234");
         Pm.ClickOnSaveButton();
-        Pm.ClickOnEmplyList();
+        Pm.ClickOnEmplyListOpn();
 
         // --------- Assign Leave to that Employee ---------
         POM04_LeavePage LeavePg = new POM04_LeavePage(getDriver());
@@ -55,7 +58,7 @@ public class LeavePageTest extends BaseClass {
         LeavePg.ClickOnLeaveTab();
         LeavePg.ClickOnEntitlementsOpn();
         LeavePg.ClickOnAddEntitlementsOpn();
-        LeavePg.EnterEmployeeNAme("Sam Ron Wilson");
+        LeavePg.EnterEmployeeNAme("Sam Bob Wilson");
         LeavePg.SelectLeaveType("CAN - Personal");
         LeavePg.SelectLeavePeriod("2025-01-01 - 2025-31-12");
         LeavePg.EnterEntitlementValue(5);

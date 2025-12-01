@@ -4,27 +4,18 @@ import Utils.BasePageUtils;
 import Utils.WaitUtils;
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
-import org.openqa.selenium.devtools.v136.page.model.Screenshot;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.io.File;
 import java.io.IOException;
-import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
 
 @Slf4j
-public class POC03_PIMPage extends BasePageUtils {
+public class POM03_PIMPage extends BasePageUtils {
     WebDriver driver;
     WaitUtils wait;
 
-    public POC03_PIMPage(WebDriver driver) {
+    public POM03_PIMPage(WebDriver driver) {
         super(driver);
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -220,8 +211,8 @@ public class POC03_PIMPage extends BasePageUtils {
     }
 
     @Step("Click on Employee list tab")
-    public void ClickOnEmplyList() throws InterruptedException {
-        Thread.sleep(7000);
+    public void ClickOnEmplyListOpn() throws InterruptedException {
+        Thread.sleep(2000);
         wait.waitForElementToBeClickable(EmpListopt, 10);
         EmpListopt.click();
         log.info("Click on Employee list tab");

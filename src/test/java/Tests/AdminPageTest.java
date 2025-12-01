@@ -1,9 +1,10 @@
 package Tests;
 
 import Base.BaseClass;
-import Pages.POC01_LoginPage;
-import Pages.POC02_AdminPage;
-import Pages.POC03_PIMPage;
+import Pages.POM01_LoginPage;
+import Pages.POM02_AdminPage;
+import Pages.POM03_PIMPage;
+import Utils.TestDataUtils;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
@@ -12,7 +13,7 @@ import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import java.util.List;
+import java.util.Random;
 
 import static org.testng.Assert.assertTrue;
 
@@ -25,26 +26,42 @@ public class AdminPageTest extends BaseClass {
     @Parameters("Browser")
     public void VerifyAdminTab() throws InterruptedException {
         log.info("Test Started: Verify Admin Page.");
-        POC01_LoginPage lp = new POC01_LoginPage(getDriver());
+
+        // ========= 1. Prepare unique test data =========
+
+        String employeeId = TestDataUtils.UniqueID();   // unique employee ID
+        String employeeLoginUser = TestDataUtils.UniqueUsername("E");  // unique login for employee
+        String adminUsername = "Samm" + (char)('A' + new Random().nextInt(26));   // unique admin user
+        String password = "Pass@123";
+
+        // ========= 2. Login =========
+        POM01_LoginPage lp = new POM01_LoginPage(getDriver());
         lp.EnterUsername("Admin");
         lp.EnterPassword("admin123");
         lp.ClickOnLoginButton();
         lp.GetTitle();
 
-        POC03_PIMPage Pm= new POC03_PIMPage(getDriver());
+        // ========= 3. Create Employee in PIM =========
+        POM03_PIMPage Pm= new POM03_PIMPage(getDriver());
         Pm.ClickOnPimTab();
         Pm.ClickOnAddBtn();
         Pm.GetPimTabTitle();
+
+        // Employee names can stay fixed; only ID + login must be unique
         Pm.EnterFirstName("Sam");
         Pm.EnterMiddleName("Ron");
         Pm.EnterLastName("Wilson");
-        Pm.EnterEmployeeID("0007");
+
+
+        Pm.EnterEmployeeID(employeeId);
         Pm.EnableCreateLoginSwitch();
-        Pm.EnterUsername("Sam123");
+        Pm.EnterUsername(employeeLoginUser);
         Pm.EnterPassword("Sam@1234", "Sam@1234" );
         Pm.ClickOnSaveButton();
+        Pm.ClickOnEmplyListOpn();
 
-        POC02_AdminPage ad = new POC02_AdminPage(getDriver());
+        // ========= 4. Go to Admin and create Admin User =========
+        POM02_AdminPage ad = new POM02_AdminPage(getDriver());
         ad.ClickOnAdmin();
 
         // User Assert to Verify Admin page URL
@@ -52,43 +69,48 @@ public class AdminPageTest extends BaseClass {
         Assert.assertTrue(ActualURL.contains("viewSystemUsers"),
                 "Test Fail expected URL contain 'viewSystemUsers' but got: " + ActualURL);
 
-        System.out.println("Admin Page URL is valid: " + ActualURL);
-        Thread.sleep(3000);
-
+        log.info("Admin Page URL is valid: {}", ActualURL);
         ad.ClickOnAddBtn();
-        Thread.sleep(2000);
+
         // User Assert to Verify Add Uer page URL
         String AddPgUrl = ad.GetAddUserPageURL();
         Assert.assertTrue(AddPgUrl.contains("saveSystemUser"),
                 "Test Fail expected URL contain 'saveSystemUser' but got: " + AddPgUrl);
 
-        System.out.println("Add User page URL is valid: " + AddPgUrl);
-        Thread.sleep(3000);
+        log.info("Add User Page URL is valid: {}", AddPgUrl);
 
+        // Fill Add User form
         ad.ClickOnUserRoleDropDown("Admin");
         ad.ClickOnStatusDropDown("Enabled");
-        ad.EnterPasword("Pass@123");
+        ad.EnterPasword(password);
+
+        // This searches existing employee we just created
         ad.EnterEmployeeName("Sam Ron Wilson");
-        ad.EnterUsername("Rahulya");
-        ad.EnterConfirmPassword("Pass@123");
+
+        // Unique admin username
+        ad.EnterUsername(adminUsername);
+        ad.EnterConfirmPassword(password);
         ad.ClickOnSaveButton();
-        ad.EnterUserNmForSearch("Rahulya");
+
+        // ========= 5. Search created Admin user =========
+        ad.EnterUserNmForSearch(adminUsername);
         ad.ClickOnSearchBtn();
 
         // Fetch the created user from a list
         String user = ad.UserList();
-        String expectedUser = "Rahulya";
+//        String expectedUser = "Rahulya";
 
-        Assert.assertTrue(user.contains(expectedUser),
-                "Created user name is '" + expectedUser + "' not in the list:\n" + user);
+        Assert.assertTrue(user.contains(adminUsername),
+                "Created user name is '" + adminUsername + "' not in the list:\n" + user);
 
-        System.out.println("User name is in the list. User is created successfully: " + expectedUser);
+        System.out.println("User name is in the list. User is created successfully: " + adminUsername);
 
+        // ========= 6. Delete created user =========
         ad.DeleteUser();
 
         // Verify text message after user delete
         String actualText = ad.PrintNoResult();
         Assert.assertEquals(actualText, "No Records Found", "Delete user failed - Text mismatch!");
-        System.out.println("User deleted successfully. Verified message: " + actualText);
+        log.info("User deleted successfully. Verified message: {}", actualText);
     }
 }

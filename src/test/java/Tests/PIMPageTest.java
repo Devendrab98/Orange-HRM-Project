@@ -1,13 +1,12 @@
 package Tests;
 
 import Base.BaseClass;
-import Pages.POC01_LoginPage;
-import Pages.POC03_PIMPage;
+import Pages.POM01_LoginPage;
+import Pages.POM03_PIMPage;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
-import org.testng.IRetryAnalyzer;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -22,13 +21,13 @@ public class PIMPageTest extends BaseClass {
     @Parameters("Browser")
     public void VerifyPIMTab() throws InterruptedException, IOException {
         log.info("Test Started: Verify PIM Page.");
-        POC01_LoginPage lp = new POC01_LoginPage(getDriver());
+        POM01_LoginPage lp = new POM01_LoginPage(getDriver());
         lp.EnterUsername("Admin");
         lp.EnterPassword("admin123");
         lp.ClickOnLoginButton();
         lp.GetTitle();
 
-        POC03_PIMPage Pm= new POC03_PIMPage(getDriver());
+        POM03_PIMPage Pm= new POM03_PIMPage(getDriver());
         Pm.ClickOnPimTab();
         Pm.ClickOnAddBtn();
         Pm.GetPimTabTitle();
@@ -41,7 +40,7 @@ public class PIMPageTest extends BaseClass {
         Pm.EnterUsername("Sam123");
         Pm.EnterPassword("Sam@1234", "Sam@1234" );
         Pm.ClickOnSaveButton();
-        Pm.ClickOnEmplyList();
+        Pm.ClickOnEmplyListOpn();
         Pm.EmployeeNameField("Sam Ron Wilson");
 //        Pm.EnterEmpID("0007");
         Pm.ClickOnSearchButtonn();

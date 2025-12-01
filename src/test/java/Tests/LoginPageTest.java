@@ -1,7 +1,7 @@
 package Tests;
 
 import Base.BaseClass;
-import Pages.POC01_LoginPage;
+import Pages.POM01_LoginPage;
 import Utils.AllureUtils;
 import io.qameta.allure.*;
 import org.testng.Assert;
@@ -18,7 +18,7 @@ public class LoginPageTest extends BaseClass {
     public void VerifyLogin() {
         log.info("Test started: verifyLogin.");
         AllureUtils.logInfo("Test Allure");
-        POC01_LoginPage lg = new POC01_LoginPage(getDriver());
+        POM01_LoginPage lg = new POM01_LoginPage(getDriver());
         lg.EnterUsername("Admin");
         lg.EnterPassword("admin123");
         lg.ClickOnLoginButton();
@@ -40,7 +40,7 @@ public class LoginPageTest extends BaseClass {
     @Story("Login Feature")
     public void InvalidCredTest(){
         log.info("Invalid Test started: Verify login Functionality with invalid Credentials");
-        POC01_LoginPage lgg = new POC01_LoginPage(getDriver());
+        POM01_LoginPage lgg = new POM01_LoginPage(getDriver());
         lgg.InvalidLogin("Admin", "admin12345");
     }
 }

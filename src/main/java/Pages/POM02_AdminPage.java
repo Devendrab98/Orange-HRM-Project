@@ -4,6 +4,7 @@ import Utils.BasePageUtils;
 import Utils.WaitUtils;
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,20 +12,24 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 import java.util.List;
 
 @Slf4j
-public class POC02_AdminPage extends BasePageUtils {
-    WebDriver driver;
-    WaitUtils wait;
+public class POM02_AdminPage extends BasePageUtils {
+    private  WebDriver driver;
+    private  WaitUtils wait;
 
-    public POC02_AdminPage(WebDriver driver) {
+    public POM02_AdminPage(WebDriver driver) {
         super(driver);
         this.driver = driver;
         wait = new WaitUtils(driver);
         PageFactory.initElements(driver, this);
         log.info("Admin Page initialized successfully.");
     }
+
+    // ===== Locators =====
 
     // Find AdminTab Element
     @FindBy(xpath = "//span[text()='Admin']")
@@ -98,9 +103,12 @@ public class POC02_AdminPage extends BasePageUtils {
     @FindBy(xpath = "//div[text()='-- Select --']")
     private List<WebElement> SelectDropdown;
 
+    // ===== Actions =====
 
     @Step("Click on the Admin tab")
-    public void ClickOnAdmin() {
+    public void ClickOnAdmin() throws InterruptedException {
+        Thread.sleep(200);
+        driver.navigate().refresh();
         wait.waitForElementToBeClickable(AdminTab, 10);
         AdminTab.click();
         log.info("Click on Admin Tab");
@@ -172,10 +180,21 @@ public class POC02_AdminPage extends BasePageUtils {
     @Step("Enter Employee name: {0}")
     public void EnterEmployeeName(String EnpName) throws InterruptedException {
         wait.waitForElementToBeVisible(EmployeeNm, 10);
+        EmployeeNm.clear();
         EmployeeNm.sendKeys(EnpName);
-        Thread.sleep(12000);
+//        Thread.sleep(12000);
+//        EmployeeNm.sendKeys(Keys.ARROW_DOWN, Keys.ENTER);
+//        log.info("Select the Employee name:"+EnpName);
+
+        // Wait for auto-suggest list instead of Thread.sleep(12000)
+        WebDriverWait dropdownWait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        dropdownWait.until
+                (ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='option']")));
+
+        Thread.sleep(2000);
         EmployeeNm.sendKeys(Keys.ARROW_DOWN, Keys.ENTER);
         log.info("Select the Employee name:"+EnpName);
+
     }
 
 //    public void EnterUsername(String UsrName) throws InterruptedException {
@@ -187,7 +206,6 @@ public class POC02_AdminPage extends BasePageUtils {
 
     @Step("Enter User Name: {0}")
     public void EnterUsername(String UsrName) throws InterruptedException {
-        Thread.sleep(3000);
         enterTextByLabel("Username", UsrName);
     }
 
@@ -199,7 +217,8 @@ public class POC02_AdminPage extends BasePageUtils {
 //    }
 
     @Step("Enter Confirm Password: {0}")
-    public void EnterConfirmPassword(String Conpass){
+    public void EnterConfirmPassword(String Conpass) throws InterruptedException {
+        Thread.sleep(2000);
         enterTextByLabel("Confirm Password", Conpass);
     }
 
@@ -216,7 +235,8 @@ public class POC02_AdminPage extends BasePageUtils {
         Thread.sleep(2000);
         clickButtonByText("Save");
         log.info("Click on the save button to create user");
-        Thread.sleep(3000);
+
+        wait.waitForVisibilityOfAllElements(ListOfUsers, 10);
     }
 
 //    @Step("Enter Created User Name: {0}")
@@ -229,7 +249,7 @@ public class POC02_AdminPage extends BasePageUtils {
 
     @Step("Enter Created User Name: {0}")
     public void EnterUserNmForSearch(String UserNameAd) throws InterruptedException {
-        Thread.sleep(3000);
+        Thread.sleep(2000);
         enterTextByLabel("Username", UserNameAd);
     }
 
@@ -237,14 +257,13 @@ public class POC02_AdminPage extends BasePageUtils {
     public void ClickOnSearchBtn() throws InterruptedException {
         wait.waitForElementToBeClickable(SearchBtn, 10);
         SearchBtn.click();
-        Thread.sleep(3000);
-        SearchBtn.click();
         log.info("Click on search button");
+
+        wait.waitForVisibilityOfAllElements(ListOfUsers, 10);
     }
 
     @Step("Fetch the user list")
     public String UserList() throws InterruptedException {
-        Thread.sleep(3000);
         wait.waitForVisibilityOfAllElements(ListOfUsers, 10);
         System.out.println("Total User:" + ListOfUsers.size());
 
@@ -274,6 +293,8 @@ public class POC02_AdminPage extends BasePageUtils {
     @Step("Print no result text")
     public String PrintNoResult() {
         wait.waitForElementToBeVisible(NoResultText, 10);
-        return NoResultText.getText();
+        String text = NoResultText.getText();
+        log.info("No result text: {}", text);
+        return text;
     }
 }

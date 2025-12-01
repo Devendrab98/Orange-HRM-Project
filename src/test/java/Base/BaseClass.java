@@ -14,11 +14,10 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 
+import java.lang.reflect.Method;
 import java.io.IOException;
 
 public class BaseClass {
-
-    WebDriver webDriver;
 
     // ThreadLocal driver (safe for parallel execution)
     private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
@@ -38,11 +37,19 @@ public class BaseClass {
 
     @BeforeMethod
     @Parameters("Browser")
-    public void setup(String browser) {
+    public void setup(String browser, Method method) {
         String URL = configReader.getUrl();
         String Browser = configReader.getBrowser();
 
-        webDriver = initializeBrowser(browser);
+        // Log test start clearly
+        String className = method.getDeclaringClass().getSimpleName();
+        String methodName = method.getName();
+        long threadId = Thread.currentThread().getId();
+
+        log.info("===== START TEST ===== Class: {} | Method: {} | Thread: {} =====",
+                className, methodName, threadId);
+
+        WebDriver webDriver = initializeBrowser(browser);   // local variable
 
         driver.set(webDriver);   //  store driver in ThreadLocal
 
@@ -61,6 +68,8 @@ public class BaseClass {
 
         // Headless flag from Maven or CI environment
         boolean isHeadless = isCI || System.getProperty("headless", "false").equalsIgnoreCase("true");
+
+        WebDriver webDriver;
 
         switch (browser.toLowerCase()) {
             case "chrome":
@@ -99,15 +108,24 @@ public class BaseClass {
 
     @AfterMethod
     public void CloseBrowser(ITestResult result) {
+
+        String className = result.getTestClass().getRealClass().getSimpleName();
+        String methodName = result.getMethod().getMethodName();
+        long threadId = Thread.currentThread().getId();
+
         if (ITestResult.FAILURE == result.getStatus()) {
-            AllureUtils.attachScreenshot(getDriver());  // automatic screenshot on failure
-            log.error("Test failed. Screenshot attached.");
+            AllureUtils.attachScreenshot(getDriver());
+            log.error("Test FAILED: {}.{} | Thread: {}", className, methodName, threadId);
+        } else if (ITestResult.SUCCESS == result.getStatus()) {
+            log.info("Test PASSED: {}.{} | Thread: {}", className, methodName, threadId);
+        } else if (ITestResult.SKIP == result.getStatus()) {
+            log.warn("Test SKIPPED: {}.{} | Thread: {}", className, methodName, threadId);
         }
 
         if (getDriver() != null) {
             getDriver().quit();
-            driver.remove();   //  remove ThreadLocal reference
-            log.info("Browser closed successfully.");
+            driver.remove(); //  remove ThreadLocal reference
+            log.info("Browser closed. END TEST: {}.{} | Thread: {}", className, methodName, threadId);
         }
     }
 
