@@ -1,7 +1,7 @@
 package Tests;
 
 import Base.BaseClass;
-import Pages.POC01_LoginPage;
+import Pages.POM01_LoginPage;
 import Pages.POM05_RecruitmentPage;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
@@ -22,7 +22,7 @@ public class RecruitmentPageTest extends BaseClass {
         log.info("Admin User is now login into account.");
 
         // --------- Login as Admin ---------
-        POC01_LoginPage lp = new POC01_LoginPage(getDriver());
+        POM01_LoginPage lp = new POM01_LoginPage(getDriver());
         lp.EnterUsername("Admin");
         lp.EnterPassword("admin123");
         lp.ClickOnLoginButton();
