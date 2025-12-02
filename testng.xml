@@ -24,7 +24,5 @@
             <class name="Tests.LeavePageTest"/>
             <class name="Tests.RecruitmentPageTest"/>
         </classes>
-
     </test>
-
 </suite>
