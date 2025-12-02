@@ -58,5 +58,4 @@ public class BasePageUtils {
         button.click();
         log.info("Clicked on button: " + buttonText);
     }
-
 }

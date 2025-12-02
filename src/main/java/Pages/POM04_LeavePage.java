@@ -157,6 +157,5 @@ public class POM04_LeavePage extends BasePageUtils {
         for (WebElement listt : ListOfLeave) {
             System.out.println("Leave created result:" + listt.getText());
         }
-
     }
 }

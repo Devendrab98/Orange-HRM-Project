@@ -98,7 +98,6 @@ public class AdminPageTest extends BaseClass {
 
         // Fetch the created user from a list
         String user = ad.UserList();
-//        String expectedUser = "Rahulya";
 
         Assert.assertTrue(user.contains(adminUsername),
                 "Created user name is '" + adminUsername + "' not in the list:\n" + user);

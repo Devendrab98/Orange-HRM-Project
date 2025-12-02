@@ -206,6 +206,7 @@ public class POM02_AdminPage extends BasePageUtils {
 
     @Step("Enter User Name: {0}")
     public void EnterUsername(String UsrName) throws InterruptedException {
+        Thread.sleep(2000);
         enterTextByLabel("Username", UsrName);
     }
 
@@ -218,8 +219,8 @@ public class POM02_AdminPage extends BasePageUtils {
 
     @Step("Enter Confirm Password: {0}")
     public void EnterConfirmPassword(String Conpass) throws InterruptedException {
-        Thread.sleep(2000);
         enterTextByLabel("Confirm Password", Conpass);
+        log.info("Enter Confirm Password");
     }
 
 //    public void ClickOnSaveButton() throws InterruptedException {
@@ -232,7 +233,7 @@ public class POM02_AdminPage extends BasePageUtils {
 
     @Step("Click on the save button to create user")
     public void ClickOnSaveButton() throws InterruptedException {
-        Thread.sleep(2000);
+        wait.waitForElementToBeClickable(SaveButton,10);
         clickButtonByText("Save");
         log.info("Click on the save button to create user");
 
@@ -249,8 +250,9 @@ public class POM02_AdminPage extends BasePageUtils {
 
     @Step("Enter Created User Name: {0}")
     public void EnterUserNmForSearch(String UserNameAd) throws InterruptedException {
-        Thread.sleep(2000);
+        wait.waitForElementToBeVisible(UserNa, 10);
         enterTextByLabel("Username", UserNameAd);
+        log.info("Enter the created user name: {}", UserNameAd);
     }
 
     @Step("Click on search button")

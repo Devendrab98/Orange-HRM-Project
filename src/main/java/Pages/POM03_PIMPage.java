@@ -7,8 +7,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
+import java.time.Duration;
+import java.util.List;
 
 @Slf4j
 public class POM03_PIMPage extends BasePageUtils {
@@ -115,6 +119,15 @@ public class POM03_PIMPage extends BasePageUtils {
     @FindBy(xpath = "//label[text()='Employee Name']/../following-sibling::div//input[@placeholder='Type for hints...']")
     private WebElement EmployeeName;
 
+    // Find Created User List from Admin Tab, //div[@class='oxd-table orangehrm-employee-list']//div[@class='oxd-table-body']
+    @FindBy(xpath = "//div[@class='oxd-table orangehrm-employee-list']//div[@class='oxd-table-body']")
+    private List<WebElement> ListOffUsers;
+
+    // Find the element of Delete icon
+    @FindBy(xpath = "//i[@class='oxd-icon bi-trash']")
+    private WebElement DeleteIcon;
+
+
 
     @Step("Click on the PIM tab")
     public void ClickOnPimTab() {
@@ -171,7 +184,7 @@ public class POM03_PIMPage extends BasePageUtils {
 //    }
 
     @Step("Enter Employee Id: {0}")
-    public void EnterEmployeeID(String EmpId){
+    public void EnterEmployeeID(String EmpId) {
         enterTextByLabel("Employee Id", EmpId);
     }
 
@@ -189,7 +202,7 @@ public class POM03_PIMPage extends BasePageUtils {
 //    }
 
     @Step("Enter User Name: {0}")
-    public void EnterUsername(String UName){
+    public void EnterUsername(String UName) {
         enterTextByLabel("Username", UName);
     }
 
@@ -205,7 +218,7 @@ public class POM03_PIMPage extends BasePageUtils {
     }
 
     @Step("Click on the save button")
-    public void ClickOnSaveButton(){
+    public void ClickOnSaveButton() {
         clickButtonByText("Save");
         log.info("Click on save button");
     }
@@ -229,10 +242,19 @@ public class POM03_PIMPage extends BasePageUtils {
     @Step("Enter Employee Name: {0}")
     public void EmployeeNameField(String EmplyName) throws InterruptedException {
         wait.waitForElementToBeVisible(EmployeeNamefl, 10);
-        Thread.sleep(5000);
+        EmployeeNamefl.clear();
         EmployeeNamefl.sendKeys(EmplyName);
+
+        // Wait for auto-suggest dropdown instead of fixed 5 seconds
+        WebDriverWait dropdownWait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        dropdownWait.until(
+                ExpectedConditions.visibilityOfElementLocated(
+                        By.xpath("//div[@role='option']"))
+        );
+
+        Thread.sleep(2000);
         EmployeeNamefl.sendKeys(Keys.ARROW_DOWN, Keys.ENTER);
-        log.info("Enter Employee Name:" + EmplyName);
+        log.info("Enter Employee Name: " + EmplyName);
     }
 
     @Step("Click on Search button")
@@ -270,7 +292,7 @@ public class POM03_PIMPage extends BasePageUtils {
 //    }
 
     @Step("Select the Job Title dropdown value: {0}")
-    public void SelectJobTitle(String SelectedJobTitle){
+    public void SelectJobTitle(String SelectedJobTitle) {
         selectDropdownByLabel("Job Title", SelectedJobTitle);
         log.info("Click on User Job Title Dropdown");
         log.info("Select the 'QA Engineer' option from the User role dropdown");
@@ -281,7 +303,24 @@ public class POM03_PIMPage extends BasePageUtils {
         clickButtonByText("Save");
         log.info("Click on Save button to update the user information");
 
-//        File Screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-//        FileUtils.copyFile(Screenshot, new File("New File.png"));
+//        wait.waitForVisibilityOfAllElements(ListOffUsers, 10);
+    }
+
+//    public void ListOFFUsers(){
+//        wait.waitForVisibilityOfAllElements(ListOffUsers, 10);
+//        System.out.println("Total User:" + ListOffUsers.size());
+//    }
+
+    @Step("Clicked on the Delete icon")
+    public void ClickOnDelIcon() {
+        wait.waitForElementToBeClickable(DeleteIcon, 10);
+        DeleteIcon.click();
+        log.info("Clicked on the Delete icon");
+    }
+
+    @Step("User Deleted Successfully.")
+    public void DeleteUserr(){
+        clickButtonByText("Yes, Delete");
+        log.info("User Deleted Successfully.");
     }
 }
