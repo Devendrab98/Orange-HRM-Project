@@ -235,6 +235,8 @@ public class POM02_AdminPage extends BasePageUtils {
     public void ClickOnSaveButton() throws InterruptedException {
         clickButtonByText("Save");
         log.info("Click on the save button to create user");
+
+        wait.waitForVisibilityOfAllElements(ListOfUsers, 20);
     }
 
 //    @Step("Enter Created User Name: {0}")
@@ -247,20 +249,21 @@ public class POM02_AdminPage extends BasePageUtils {
 
     @Step("Enter Created User Name: {0}")
     public void EnterUserNmForSearch(String UserNameAd) throws InterruptedException {
+        Thread.sleep(2000);
         enterTextByLabel("Username", UserNameAd);
         log.info("Enter the created user name: {}", UserNameAd);
     }
 
     @Step("Click on search button")
     public void ClickOnSearchBtn() throws InterruptedException {
-        wait.waitForElementToBeClickable(SearchBtn, 10);
-        SearchBtn.click();
+        Thread.sleep(2000);
+        clickButtonByText("Search");
         log.info("Click on search button");
     }
 
     @Step("Fetch the user list")
     public String UserList() throws InterruptedException {
-        wait.waitForVisibilityOfAllElements(ListOfUsers, 10);
+        wait.waitForVisibilityOfAllElements(ListOfUsers, 20);
         System.out.println("Total User:" + ListOfUsers.size());
 
         StringBuilder sb = new StringBuilder();

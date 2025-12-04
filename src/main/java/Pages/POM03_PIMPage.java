@@ -259,8 +259,7 @@ public class POM03_PIMPage extends BasePageUtils {
 
     @Step("Click on Search button")
     public void ClickOnSearchButtonn() {
-        wait.waitForElementToBeClickable(SearchButtn, 20);
-        SearchButtn.click();
+        clickButtonByText("Search");
         log.info("Click on Search button");
     }
 

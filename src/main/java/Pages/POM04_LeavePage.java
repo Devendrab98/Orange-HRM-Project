@@ -151,7 +151,7 @@ public class POM04_LeavePage extends BasePageUtils {
 
     @Step("Fetch the Leave List")
     public void ListOFLeave() {
-        wait.waitForVisibilityOfAllElements(ListOfLeave, 10);
+        wait.waitForVisibilityOfAllElements(ListOfLeave, 20);
         System.out.println("Total leave:" + ListOfLeave.size());
 
         for (WebElement listt : ListOfLeave) {
