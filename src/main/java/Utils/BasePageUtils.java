@@ -54,7 +54,7 @@ public class BasePageUtils {
     // Generic: click button by visible text
     public void clickButtonByText(String buttonText) {
         String xpath = "//button[normalize-space()='" + buttonText + "']";
-        WebElement button = wait.waitForElementToBeClickableBy(By.xpath(xpath), 10);
+        WebElement button = wait.waitForElementToBeClickableBy(By.xpath(xpath), 20);
         button.click();
         log.info("Clicked on button: " + buttonText);
     }

@@ -241,12 +241,12 @@ public class POM03_PIMPage extends BasePageUtils {
 
     @Step("Enter Employee Name: {0}")
     public void EmployeeNameField(String EmplyName) throws InterruptedException {
-        wait.waitForElementToBeVisible(EmployeeNamefl, 10);
+        wait.waitForElementToBeVisible(EmployeeNamefl, 20);
         EmployeeNamefl.clear();
         EmployeeNamefl.sendKeys(EmplyName);
 
         // Wait for auto-suggest dropdown instead of fixed 5 seconds
-        WebDriverWait dropdownWait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait dropdownWait = new WebDriverWait(driver, Duration.ofSeconds(20));
         dropdownWait.until(
                 ExpectedConditions.visibilityOfElementLocated(
                         By.xpath("//div[@role='option']"))
@@ -259,7 +259,7 @@ public class POM03_PIMPage extends BasePageUtils {
 
     @Step("Click on Search button")
     public void ClickOnSearchButtonn() {
-        wait.waitForElementToBeClickable(SearchButtn, 10);
+        wait.waitForElementToBeClickable(SearchButtn, 20);
         SearchButtn.click();
         log.info("Click on Search button");
     }

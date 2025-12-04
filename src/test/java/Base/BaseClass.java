@@ -74,6 +74,7 @@ public class BaseClass {
         switch (browser.toLowerCase()) {
             case "chrome":
                 ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.addArguments("--window-size=1920,1080");
 
                 // Required flags for CI (GitHub Actions)
                 if (isHeadless) {
@@ -81,7 +82,6 @@ public class BaseClass {
                     chromeOptions.addArguments("--no-sandbox");
                     chromeOptions.addArguments("--disable-dev-shm-usage");
                     chromeOptions.addArguments("--disable-gpu");
-                    chromeOptions.addArguments("--window-size=1920,1080");
                 }
 
                 webDriver = new ChromeDriver(chromeOptions);

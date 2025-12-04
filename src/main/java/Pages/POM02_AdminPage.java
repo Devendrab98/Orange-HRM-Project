@@ -233,11 +233,8 @@ public class POM02_AdminPage extends BasePageUtils {
 
     @Step("Click on the save button to create user")
     public void ClickOnSaveButton() throws InterruptedException {
-        wait.waitForElementToBeClickable(SaveButton,10);
         clickButtonByText("Save");
         log.info("Click on the save button to create user");
-
-        wait.waitForVisibilityOfAllElements(ListOfUsers, 10);
     }
 
 //    @Step("Enter Created User Name: {0}")
@@ -250,7 +247,6 @@ public class POM02_AdminPage extends BasePageUtils {
 
     @Step("Enter Created User Name: {0}")
     public void EnterUserNmForSearch(String UserNameAd) throws InterruptedException {
-        wait.waitForElementToBeVisible(UserNa, 10);
         enterTextByLabel("Username", UserNameAd);
         log.info("Enter the created user name: {}", UserNameAd);
     }
@@ -260,8 +256,6 @@ public class POM02_AdminPage extends BasePageUtils {
         wait.waitForElementToBeClickable(SearchBtn, 10);
         SearchBtn.click();
         log.info("Click on search button");
-
-        wait.waitForVisibilityOfAllElements(ListOfUsers, 10);
     }
 
     @Step("Fetch the user list")

@@ -10,6 +10,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 @Slf4j
 public class POM05_RecruitmentPage extends BasePageUtils {
@@ -161,9 +165,17 @@ public class POM05_RecruitmentPage extends BasePageUtils {
 
     @Step("Enter Candidate Name: {0}")
     public void EnterCandidateName(String CanName) throws InterruptedException {
-        wait.waitForElementToBeVisible(CandidateName, 10);
+        wait.waitForElementToBeVisible(CandidateName, 20);
         CandidateName.sendKeys(CanName);
-        Thread.sleep(3000);
+//        Thread.sleep(3000);
+
+        // Wait for auto-suggest dropdown instead of fixed 5 seconds
+        WebDriverWait dropdownWait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        dropdownWait.until(
+                ExpectedConditions.visibilityOfElementLocated(
+                        By.xpath("//div[@role='option']"))
+        );
+
         CandidateName.sendKeys(Keys.ARROW_DOWN, Keys.ENTER);
         log.info("Enter Candidate Name:" + CanName);
     }
