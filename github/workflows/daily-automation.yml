@@ -1,3 +1,5 @@
+name: Daily Test Run
+
 on:
   schedule:
     - cron: "30 5 * * *"   # 11:00 AM IST
@@ -9,10 +11,10 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Java
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
@@ -25,7 +27,10 @@ jobs:
 
       - name: Run Tests with Maven
         run: |
-          mvn clean test -Dsurefire.suiteXmlFiles=testng.xml
+          mvn -B clean test \
+            -Dsurefire.suiteXmlFiles=testng.xml \
+            -Dbrowser=chrome \
+            -Dheadless=true
 
       - name: Upload TestNG Report
         uses: actions/upload-artifact@v3
@@ -38,7 +43,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Screenshots
-          path: screenshots/  # adjust if your screenshot folder is different
+          path: screenshots/
 
       - name: Send Email Notification (PASS/FAIL)
         if: always()
