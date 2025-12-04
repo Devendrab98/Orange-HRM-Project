@@ -273,7 +273,7 @@ public class POM02_AdminPage extends BasePageUtils {
         return sb.toString();
     }
 
-    @Step("Delete the User")
+    @Step("Clicked on the Delete icon")
     public void ClickOnDeleteIcon() {
         wait.waitForElementToBeClickable(DeleteIcon, 10).click();
         log.info("User deleted successfully");
