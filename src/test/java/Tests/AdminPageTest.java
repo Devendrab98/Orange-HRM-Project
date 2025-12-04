@@ -105,7 +105,8 @@ public class AdminPageTest extends BaseClass {
         System.out.println("User name is in the list. User is created successfully: " + adminUsername);
 
         // ========= 6. Delete created user =========
-        ad.DeleteUser();
+        ad.ClickOnDeleteIcon();
+        ad.DeleteUrs();
 
         // Verify text message after user delete
         String actualText = ad.PrintNoResult();

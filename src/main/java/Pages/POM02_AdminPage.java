@@ -271,9 +271,8 @@ public class POM02_AdminPage extends BasePageUtils {
     }
 
     @Step("Delete the User")
-    public void DeleteUser() {
+    public void ClickOnDeleteIcon() {
         wait.waitForElementToBeClickable(DeleteIcon, 10).click();
-        wait.waitForElementToBeClickable(DeleteBtn, 10).click();
         log.info("User deleted successfully");
 //        wait.until(ExpectedConditions.visibilityOf(NoResultText));
 //        String actualText = NoResultText.getText();
@@ -284,6 +283,12 @@ public class POM02_AdminPage extends BasePageUtils {
 //        } else {
 //            System.out.println("Text is not matched. Expected: " + ExpectedText + ", but got: " + actualText);
 //        }
+    }
+
+    @Step("User Deleted Successfully.")
+    public void DeleteUrs(){
+        clickButtonByText("Yes, Delete");
+        log.info("User Deleted Successfully.");
     }
 
     @Step("Print no result text")
