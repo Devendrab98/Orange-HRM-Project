@@ -10,7 +10,6 @@ import java.io.ByteArrayInputStream;
 
 public class AllureUtils {
 
-
     /**
      * Attach a plain text log into Allure report.
      */
@@ -20,17 +19,27 @@ public class AllureUtils {
     }
 
     /**
-     * Attach screenshot in Allure report.
+     * Attach screenshot to Allure report using Allure.addAttachment.
+     * This version works with void return type.
+     *
+     * @param driver WebDriver instance
+     * @param name   Screenshot name in Allure report
      */
-    @Attachment(value = "Screenshot", type = "image/png")
-    public static void attachScreenshot(WebDriver driver) {
-        ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+    public static void attachScreenshot(WebDriver driver, String name) {
+        if (driver == null) {
+            logInfo("WebDriver is null. Screenshot not captured.");
+            return;
+        }
+
+        byte[] screenshotBytes = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+        Allure.addAttachment(name, new ByteArrayInputStream(screenshotBytes));
     }
 
     /**
-     * Alternative way using lifecycle (if you prefer dynamic attachment).
+     * Optional simple screenshot method with default name.
+     * Uses void return type compatible with most IDEs.
      */
-    public static void attachScreenshotWithName(WebDriver driver, String name) {
-        Allure.addAttachment(name, new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
+    public static void attachScreenshot(WebDriver driver) {
+        attachScreenshot(driver, "Screenshot_" + System.currentTimeMillis());
     }
 }

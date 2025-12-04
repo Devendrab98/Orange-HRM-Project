@@ -114,7 +114,7 @@ public class BaseClass {
         long threadId = Thread.currentThread().getId();
 
         if (ITestResult.FAILURE == result.getStatus()) {
-            AllureUtils.attachScreenshot(getDriver());
+            AllureUtils.attachScreenshot(getDriver(), methodName + "_Failed");
             log.error("Test FAILED: {}.{} | Thread: {}", className, methodName, threadId);
         } else if (ITestResult.SUCCESS == result.getStatus()) {
             log.info("Test PASSED: {}.{} | Thread: {}", className, methodName, threadId);
