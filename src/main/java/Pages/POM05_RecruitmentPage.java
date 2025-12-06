@@ -195,8 +195,7 @@ public class POM05_RecruitmentPage extends BasePageUtils {
     @Step("Click on Shortlist button")
     public void ClickOnShortlistBtn() throws InterruptedException {
         Thread.sleep(3000);
-        wait.waitForElementToBeClickable(ShortlistButton, WaitUtils.TIMEOUT);
-        ShortlistButton.click();
+        clickButtonByText("Shortlist");
         log.info("Click on Shortlist button");
     }
 
