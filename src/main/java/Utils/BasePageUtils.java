@@ -22,7 +22,7 @@ public class BasePageUtils {
     // Generic: enter text by label name
     public void enterTextByLabel(String labelText, String value) {
         String xpath = "//label[text()='" + labelText + "']/../following-sibling::div//input";
-        WebElement inputField = wait.waitForElementToBeVisibleByLocator(By.xpath(xpath), 10);
+        WebElement inputField = wait.waitForElementToBeVisibleByLocator(By.xpath(xpath), WaitUtils.TIMEOUT);
         inputField.sendKeys(value);
         log.info("Entered text '" + value + "' in field: " + labelText);
     }
@@ -30,11 +30,11 @@ public class BasePageUtils {
     // Generic: select dropdown value by label
     public void selectDropdownByLabel(String labelText, String optionToSelect) {
         String dropdownXpath = "//label[text()='" + labelText + "']/../following-sibling::div//div[contains(@class,'oxd-select-text-input')]";
-        WebElement dropdown = wait.waitForElementToBeClickableBy(By.xpath(dropdownXpath), 10);
+        WebElement dropdown = wait.waitForElementToBeClickableBy(By.xpath(dropdownXpath), WaitUtils.TIMEOUT);
         dropdown.click();
 
         String optionsXpath = "//div[@role='listbox']//div[@role='option']";
-        List<WebElement> options = wait.waitForPresenceOfAllElementsLocatedBy(By.xpath(optionsXpath), 10);
+        List<WebElement> options = wait.waitForPresenceOfAllElementsLocatedBy(By.xpath(optionsXpath), WaitUtils.TIMEOUT);
 
         boolean found = false;
         for (WebElement opt : options) {
@@ -54,7 +54,7 @@ public class BasePageUtils {
     // Generic: click button by visible text
     public void clickButtonByText(String buttonText) {
         String xpath = "//button[normalize-space()='" + buttonText + "']";
-        WebElement button = wait.waitForElementToBeClickableBy(By.xpath(xpath), 20);
+        WebElement button = wait.waitForElementToBeClickableBy(By.xpath(xpath), WaitUtils.TIMEOUT);
         button.click();
         log.info("Clicked on button: " + buttonText);
     }

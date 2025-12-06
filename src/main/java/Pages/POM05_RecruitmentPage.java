@@ -91,35 +91,35 @@ public class POM05_RecruitmentPage extends BasePageUtils {
 
     @Step("Click on the Recruitment tab")
     public void ClickOnRecruitmentTab() {
-        wait.waitForElementToBeClickable(RecruitmentTab, 10);
+        wait.waitForElementToBeClickable(RecruitmentTab, WaitUtils.TIMEOUT);
         RecruitmentTab.click();
         log.info("Click on Recruitment Tab");
     }
 
     @Step("Click on Add Button")
     public void ClickOnAddBtn() {
-        wait.waitForElementToBeClickable(Addbtn, 10);
+        wait.waitForElementToBeClickable(Addbtn, WaitUtils.TIMEOUT);
         Addbtn.click();
         log.info("Click on Add Button");
     }
 
     @Step("Enter First Name: {0}")
     public void EnterFirstName(String FName) {
-        wait.waitForElementToBeVisible(EmpFirstName, 10);
+        wait.waitForElementToBeVisible(EmpFirstName, WaitUtils.TIMEOUT);
         EmpFirstName.sendKeys(FName);
         log.info("Enter First Name:" + FName);
     }
 
     @Step("Enter Middle Name: {0}")
     public void EnterMiddleName(String MName) {
-        wait.waitForElementToBeVisible(MiddleName, 10);
+        wait.waitForElementToBeVisible(MiddleName, WaitUtils.TIMEOUT);
         MiddleName.sendKeys(MName);
         log.info("Enter Middle Name:" + MName);
     }
 
     @Step("Enter Last Name: {0}")
     public void EnterLastName(String LName) {
-        wait.waitForElementToBeVisible(LastName, 10);
+        wait.waitForElementToBeVisible(LastName, WaitUtils.TIMEOUT);
         LastName.sendKeys(LName);
         log.info("Enter Last Name:" + LName);
     }
@@ -143,14 +143,14 @@ public class POM05_RecruitmentPage extends BasePageUtils {
     }
 
     public void UploadResume(String upload) {
-        WebElement File = wait.waitForPresenceOfElement(By.xpath(String.valueOf(resumeUpload)), 10);
+        WebElement File = wait.waitForPresenceOfElement(By.xpath(String.valueOf(resumeUpload)), WaitUtils.TIMEOUT);
         File.sendKeys(upload);
         log.info("Upload the resume");
     }
 
     @Step("Click on the save button")
     public void ClickOnSaveButtonn() throws InterruptedException {
-        wait.waitForElementToBeClickable(SaveButtonn, 10);
+        wait.waitForElementToBeClickable(SaveButtonn, WaitUtils.TIMEOUT);
         SaveButtonn.click();
         log.info("Click on save button");
         Thread.sleep(3000);
@@ -159,18 +159,18 @@ public class POM05_RecruitmentPage extends BasePageUtils {
     @Step("Click On Candidates Option")
     public void ClickOnCandidatesOpn() throws InterruptedException {
         Thread.sleep(3000);
-        wait.waitForElementToBeClickable(Candidates, 10);
+        wait.waitForElementToBeClickable(Candidates, WaitUtils.TIMEOUT);
         Candidates.click();
     }
 
     @Step("Enter Candidate Name: {0}")
     public void EnterCandidateName(String CanName) throws InterruptedException {
-        wait.waitForElementToBeVisible(CandidateName, 20);
+        wait.waitForElementToBeVisible(CandidateName, WaitUtils.TIMEOUT);
         CandidateName.sendKeys(CanName);
 //        Thread.sleep(3000);
 
         // Wait for auto-suggest dropdown instead of fixed 5 seconds
-        WebDriverWait dropdownWait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        WebDriverWait dropdownWait = new WebDriverWait(driver, Duration.ofSeconds(WaitUtils.TIMEOUT));
         dropdownWait.until(
                 ExpectedConditions.visibilityOfElementLocated(
                         By.xpath("//div[@role='option']"))
@@ -187,7 +187,7 @@ public class POM05_RecruitmentPage extends BasePageUtils {
 
     @Step("Click on Eye button button")
     public void ClickOnEyeBtn() {
-        wait.waitForElementToBeClickable(EyeButton, 10);
+        wait.waitForElementToBeClickable(EyeButton, WaitUtils.TIMEOUT);
         EyeButton.click();
         log.info("Click on Eye button button");
     }
@@ -195,7 +195,7 @@ public class POM05_RecruitmentPage extends BasePageUtils {
     @Step("Click on Shortlist button")
     public void ClickOnShortlistBtn() throws InterruptedException {
         Thread.sleep(3000);
-        wait.waitForElementToBeClickable(ShortlistButton, 10);
+        wait.waitForElementToBeClickable(ShortlistButton, WaitUtils.TIMEOUT);
         ShortlistButton.click();
         log.info("Click on Shortlist button");
     }

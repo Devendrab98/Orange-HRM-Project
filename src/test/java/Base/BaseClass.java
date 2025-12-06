@@ -75,6 +75,7 @@ public class BaseClass {
             case "chrome":
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.addArguments("--window-size=1920,1080");
+                chromeOptions.addArguments("--force-device-scale-factor=1");
 
                 // Required flags for CI (GitHub Actions)
                 if (isHeadless) {

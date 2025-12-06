@@ -12,6 +12,10 @@ import java.util.List;
 public class WaitUtils {
     private WebDriver driver;
 
+    // Detect CI environment (GitHub Actions)
+    public static final int TIMEOUT = System.getenv("GITHUB_ACTIONS") != null ? 25 : 10;
+
+
     public WaitUtils(WebDriver driver) {
         this.driver = driver;
     }
@@ -40,6 +44,7 @@ public class WaitUtils {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOutInSeconds));
         return wait.until((ExpectedConditions.visibilityOfAllElements(element)));
     }
+
 
     // Wait for element to be visible BY locator
     public WebElement waitForElementToBeVisibleByLocator(By locator, int timeOutInSeconds) {

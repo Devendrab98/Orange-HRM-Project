@@ -74,28 +74,28 @@ public class POM04_LeavePage extends BasePageUtils {
 
     @Step("Click on the leave tab")
     public void ClickOnLeaveTab() {
-        wait.waitForElementToBeClickable(LeaveTab, 10);
+        wait.waitForElementToBeClickable(LeaveTab, WaitUtils.TIMEOUT);
         LeaveTab.click();
         log.info("Click on leave tab");
     }
 
     @Step("Click on Entitlements Option")
     public void ClickOnEntitlementsOpn() {
-        wait.waitForElementToBeClickable(Entitlements, 10);
+        wait.waitForElementToBeClickable(Entitlements, WaitUtils.TIMEOUT);
         Entitlements.click();
         log.info("Click on Entitlements Option");
     }
 
     @Step("Click on Add Entitlements Option")
     public void ClickOnAddEntitlementsOpn() {
-        wait.waitForElementToBeClickable(AddEntitlements, 10);
+        wait.waitForElementToBeClickable(AddEntitlements, WaitUtils.TIMEOUT);
         AddEntitlements.click();
         log.info("Click on Add Entitlements Option");
     }
 
     @Step("Enter Employee Name: {0}")
     public void EnterEmployeeNAme(String EMPName) throws InterruptedException {
-        wait.waitForElementToBeVisible(EmployeeNAme, 10);
+        wait.waitForElementToBeVisible(EmployeeNAme, WaitUtils.TIMEOUT);
         EmployeeNAme.sendKeys(EMPName);
         Thread.sleep(5000);
         EmployeeNAme.sendKeys(Keys.ARROW_DOWN, Keys.ENTER);
@@ -114,7 +114,7 @@ public class POM04_LeavePage extends BasePageUtils {
 
     @Step("Enter the Entitlement Value: {0}")
     public void EnterEntitlementValue(int Number) {
-        wait.waitForElementToBeVisible(EntitlementValue, 10);
+        wait.waitForElementToBeVisible(EntitlementValue, WaitUtils.TIMEOUT);
         EntitlementValue.sendKeys(String.valueOf(Number));
         log.info("Enter the Entitlement Value:" + Number);
     }
@@ -145,13 +145,13 @@ public class POM04_LeavePage extends BasePageUtils {
     @Step("Get Result Text")
     public void GetResultText() throws InterruptedException {
         Thread.sleep(3000);
-        wait.waitForElementToBeVisible(resultTxt, 10);
+        wait.waitForElementToBeVisible(resultTxt, WaitUtils.TIMEOUT);
         System.out.println("Leave result:" + resultTxt.getText());
     }
 
     @Step("Fetch the Leave List")
     public void ListOFLeave() {
-        wait.waitForVisibilityOfAllElements(ListOfLeave, 20);
+        wait.waitForVisibilityOfAllElements(ListOfLeave, WaitUtils.TIMEOUT);
         System.out.println("Total leave:" + ListOfLeave.size());
 
         for (WebElement listt : ListOfLeave) {

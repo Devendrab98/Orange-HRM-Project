@@ -131,21 +131,21 @@ public class POM03_PIMPage extends BasePageUtils {
 
     @Step("Click on the PIM tab")
     public void ClickOnPimTab() {
-        wait.waitForElementToBeClickable(PimTab, 10);
+        wait.waitForElementToBeClickable(PimTab, WaitUtils.TIMEOUT);
         PimTab.click();
         log.info("Click on PIM Tab");
     }
 
     @Step("Click on Add Button")
     public void ClickOnAddBtn() {
-        wait.waitForElementToBeClickable(AddButton, 10);
+        wait.waitForElementToBeClickable(AddButton, WaitUtils.TIMEOUT);
         AddButton.click();
         log.info("Click on Add Button");
     }
 
     @Step("Get PIM page title")
     public void GetPimTabTitle() {
-        wait.waitForElementToBeVisible(PIMTabTitle, 10);
+        wait.waitForElementToBeVisible(PIMTabTitle, WaitUtils.TIMEOUT);
         System.out.println("PIM page title: " + PIMTabTitle.getText());
     }
 
@@ -158,21 +158,21 @@ public class POM03_PIMPage extends BasePageUtils {
 
     @Step("Enter First Name: {0}")
     public void EnterFirstName(String FName) {
-        wait.waitForElementToBeVisible(EmpFirstName, 10);
+        wait.waitForElementToBeVisible(EmpFirstName, WaitUtils.TIMEOUT);
         EmpFirstName.sendKeys(FName);
         log.info("Enter First Name:" + FName);
     }
 
     @Step("Enter Middle Name: {0}")
     public void EnterMiddleName(String MName) {
-        wait.waitForElementToBeVisible(MiddleName, 10);
+        wait.waitForElementToBeVisible(MiddleName, WaitUtils.TIMEOUT);
         MiddleName.sendKeys(MName);
         log.info("Enter Middle Name:" + MName);
     }
 
     @Step("Enter Last Name: {0}")
     public void EnterLastName(String LName) {
-        wait.waitForElementToBeVisible(LastName, 10);
+        wait.waitForElementToBeVisible(LastName, WaitUtils.TIMEOUT);
         LastName.sendKeys(LName);
         log.info("Enter Last Name:" + LName);
     }
@@ -190,7 +190,7 @@ public class POM03_PIMPage extends BasePageUtils {
 
     @Step("Enable Create login switch to create the password for the create user")
     public void EnableCreateLoginSwitch() {
-        wait.waitForElementToBeClickable(CreateLogin, 10);
+        wait.waitForElementToBeClickable(CreateLogin, WaitUtils.TIMEOUT);
         CreateLogin.click();
         log.info("Enable Create login switch to create the password for the create user");
     }
@@ -208,11 +208,11 @@ public class POM03_PIMPage extends BasePageUtils {
 
     @Step("Enter Password: {0} and Confirm Password: {1}")
     public void EnterPassword(String Pass, String ConfirmPass) {
-        wait.waitForElementToBeClickable(Password, 10);
+        wait.waitForElementToBeClickable(Password, WaitUtils.TIMEOUT);
         Password.sendKeys(Pass);
         log.info("Enter Password:" + Pass);
 
-        wait.waitForElementToBeClickable(ConfirmPassword, 10);
+        wait.waitForElementToBeClickable(ConfirmPassword, WaitUtils.TIMEOUT);
         ConfirmPassword.sendKeys(ConfirmPass);
         log.info("Enter Confirm Password:" + ConfirmPass);
     }
@@ -226,7 +226,7 @@ public class POM03_PIMPage extends BasePageUtils {
     @Step("Click on Employee list tab")
     public void ClickOnEmplyListOpn() throws InterruptedException {
         Thread.sleep(2000);
-        wait.waitForElementToBeClickable(EmpListopt, 10);
+        wait.waitForElementToBeClickable(EmpListopt, WaitUtils.TIMEOUT);
         EmpListopt.click();
         log.info("Click on Employee list tab");
     }
@@ -234,19 +234,19 @@ public class POM03_PIMPage extends BasePageUtils {
     @Step("Enter Employee id")
     public void EnterEmpID(String EmplyID) throws InterruptedException {
         Thread.sleep(2000);
-        wait.waitForElementToBeVisible(EmployeeIDD, 10);
+        wait.waitForElementToBeVisible(EmployeeIDD, WaitUtils.TIMEOUT);
         EmployeeIDD.sendKeys(EmplyID);
         log.info("Enter Employee id:" + EmplyID);
     }
 
     @Step("Enter Employee Name: {0}")
     public void EmployeeNameField(String EmplyName) throws InterruptedException {
-        wait.waitForElementToBeVisible(EmployeeNamefl, 20);
+        wait.waitForElementToBeVisible(EmployeeNamefl, WaitUtils.TIMEOUT);
         EmployeeNamefl.clear();
         EmployeeNamefl.sendKeys(EmplyName);
 
         // Wait for auto-suggest dropdown instead of fixed 5 seconds
-        WebDriverWait dropdownWait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        WebDriverWait dropdownWait = new WebDriverWait(driver, Duration.ofSeconds(WaitUtils.TIMEOUT));
         dropdownWait.until(
                 ExpectedConditions.visibilityOfElementLocated(
                         By.xpath("//div[@role='option']"))
@@ -265,14 +265,14 @@ public class POM03_PIMPage extends BasePageUtils {
 
     @Step("Click on Edit button button")
     public void ClickOnEditBtn() {
-        wait.waitForElementToBeClickable(EditButton, 10);
+        wait.waitForElementToBeClickable(EditButton, WaitUtils.TIMEOUT);
         EditButton.click();
         log.info("Click on Edit button button");
     }
 
     @Step("Click on Job option")
     public void ClickOnJobOpn() {
-        wait.waitForElementToBeClickable(JobOption, 10);
+        wait.waitForElementToBeClickable(JobOption, WaitUtils.TIMEOUT);
         JobOption.click();
         log.info("Click on Job option");
     }
@@ -312,7 +312,7 @@ public class POM03_PIMPage extends BasePageUtils {
 
     @Step("Clicked on the Delete icon")
     public void ClickOnDelIcon() {
-        wait.waitForElementToBeClickable(DeleteIcon, 10);
+        wait.waitForElementToBeClickable(DeleteIcon, WaitUtils.TIMEOUT);
         DeleteIcon.click();
         log.info("Clicked on the Delete icon");
     }

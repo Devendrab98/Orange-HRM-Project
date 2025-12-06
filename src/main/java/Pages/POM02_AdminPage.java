@@ -109,14 +109,14 @@ public class POM02_AdminPage extends BasePageUtils {
     public void ClickOnAdmin() throws InterruptedException {
         Thread.sleep(200);
         driver.navigate().refresh();
-        wait.waitForElementToBeClickable(AdminTab, 10);
+        wait.waitForElementToBeClickable(AdminTab, WaitUtils.TIMEOUT);
         AdminTab.click();
         log.info("Click on Admin Tab");
     }
 
     @Step("Click on Add button from admin tab")
     public void ClickOnAddBtn() {
-        wait.waitForElementToBeClickable(AddBtn, 10);
+        wait.waitForElementToBeClickable(AddBtn, WaitUtils.TIMEOUT);
         AddBtn.click();
         log.info("Click on Add Button");
     }
@@ -179,7 +179,7 @@ public class POM02_AdminPage extends BasePageUtils {
 
     @Step("Enter Employee name: {0}")
     public void EnterEmployeeName(String EnpName) throws InterruptedException {
-        wait.waitForElementToBeVisible(EmployeeNm, 10);
+        wait.waitForElementToBeVisible(EmployeeNm, WaitUtils.TIMEOUT);
         EmployeeNm.clear();
         EmployeeNm.sendKeys(EnpName);
 //        Thread.sleep(12000);
@@ -236,7 +236,7 @@ public class POM02_AdminPage extends BasePageUtils {
         clickButtonByText("Save");
         log.info("Click on the save button to create user");
 
-        wait.waitForVisibilityOfAllElements(ListOfUsers, 20);
+        wait.waitForVisibilityOfAllElements(ListOfUsers, WaitUtils.TIMEOUT);
     }
 
 //    @Step("Enter Created User Name: {0}")
@@ -263,7 +263,7 @@ public class POM02_AdminPage extends BasePageUtils {
 
     @Step("Fetch the user list")
     public String UserList() throws InterruptedException {
-        wait.waitForVisibilityOfAllElements(ListOfUsers, 20);
+        wait.waitForVisibilityOfAllElements(ListOfUsers, WaitUtils.TIMEOUT);
         System.out.println("Total User:" + ListOfUsers.size());
 
         StringBuilder sb = new StringBuilder();
@@ -275,7 +275,7 @@ public class POM02_AdminPage extends BasePageUtils {
 
     @Step("Clicked on the Delete icon")
     public void ClickOnDeleteIcon() {
-        wait.waitForElementToBeClickable(DeleteIcon, 10).click();
+        wait.waitForElementToBeClickable(DeleteIcon, WaitUtils.TIMEOUT).click();
         log.info("User deleted successfully");
 //        wait.until(ExpectedConditions.visibilityOf(NoResultText));
 //        String actualText = NoResultText.getText();
@@ -296,7 +296,7 @@ public class POM02_AdminPage extends BasePageUtils {
 
     @Step("Print no result text")
     public String PrintNoResult() {
-        wait.waitForElementToBeVisible(NoResultText, 10);
+        wait.waitForElementToBeVisible(NoResultText, WaitUtils.TIMEOUT);
         String text = NoResultText.getText();
         log.info("No result text: {}", text);
         return text;
