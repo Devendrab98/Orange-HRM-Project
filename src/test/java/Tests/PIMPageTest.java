@@ -3,6 +3,7 @@ package Tests;
 import Base.BaseClass;
 import Pages.POM01_LoginPage;
 import Pages.POM03_PIMPage;
+import TestData.TestData;
 import Utils.TestDataUtils;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
@@ -24,14 +25,9 @@ public class PIMPageTest extends BaseClass {
     public void VerifyPIMTab() throws InterruptedException, IOException {
         log.info("Test Started: Verify PIM Page.");
 
-        // ========= 1. Prepare unique test data =========
-
-        String employeeId = TestDataUtils.UniqueID();   // unique employee ID
-        String adminUsername = "Waan" + (char) ('A' + new Random().nextInt(26));   // unique admin user
-
         POM01_LoginPage lp = new POM01_LoginPage(getDriver());
-        lp.EnterUsername("Admin");
-        lp.EnterPassword("admin123");
+        lp.EnterUsername(TestData.loginID);
+        lp.EnterPassword(TestData.loginPass);
         lp.ClickOnLoginButton();
         lp.GetTitle();
 
@@ -39,20 +35,20 @@ public class PIMPageTest extends BaseClass {
         Pm.ClickOnPimTab();
         Pm.ClickOnAddBtn();
         Pm.GetPimTabTitle();
-        Pm.EnterFirstName("Sam");
-        Pm.EnterMiddleName("Ron");
-        Pm.EnterLastName("Wilson");
-        Pm.EnterEmployeeID(employeeId);
+        Pm.EnterFirstName(TestData.EmployeeFName);
+        Pm.EnterMiddleName(TestData.EmployeeMName);
+        Pm.EnterLastName(TestData.EmployeeLName);
+        Pm.EnterEmployeeID(TestData.employeeId);
         Pm.EnableCreateLoginSwitch();
-        Pm.EnterUsername(adminUsername);
-        Pm.EnterPassword("Sam@1234", "Sam@1234");
+        Pm.EnterUsername(TestData.adUsername);
+        Pm.EnterPassword(TestData.PIMUserPass, TestData.PIMUserCofmPass);
         Pm.ClickOnSaveButton();
 //        Pm.EnterEmpID("0007");
         Pm.ClickOnJobOpn();
-        Pm.SelectJobTitle("QA Engineer");
+        Pm.SelectJobTitle(TestData.JobTitle);
         Pm.ClickonSaveBtn();
         Pm.ClickOnEmplyListOpn();
-        Pm.EmployeeNameField("Sam Ron Wilson");
+        Pm.EmployeeNameField(TestData.EmployeeName);
         Pm.ClickOnSearchButtonn();
 //        Pm.ListOFFUsers();
         Pm.ClickOnDelIcon();

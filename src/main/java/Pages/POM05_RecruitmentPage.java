@@ -2,17 +2,17 @@ package Pages;
 
 import Utils.BasePageUtils;
 import Utils.WaitUtils;
+import com.aventstack.extentreports.util.Assert;
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
 import java.time.Duration;
 
 @Slf4j
@@ -167,7 +167,6 @@ public class POM05_RecruitmentPage extends BasePageUtils {
     public void EnterCandidateName(String CanName) throws InterruptedException {
         wait.waitForElementToBeVisible(CandidateName, WaitUtils.TIMEOUT);
         CandidateName.sendKeys(CanName);
-//        Thread.sleep(3000);
 
         // Wait for auto-suggest dropdown instead of fixed 5 seconds
         WebDriverWait dropdownWait = new WebDriverWait(driver, Duration.ofSeconds(WaitUtils.TIMEOUT));
@@ -176,6 +175,7 @@ public class POM05_RecruitmentPage extends BasePageUtils {
                         By.xpath("//div[@role='option']"))
         );
 
+        Thread.sleep(2000);
         CandidateName.sendKeys(Keys.ARROW_DOWN, Keys.ENTER);
         log.info("Enter Candidate Name:" + CanName);
     }
@@ -193,8 +193,7 @@ public class POM05_RecruitmentPage extends BasePageUtils {
     }
 
     @Step("Click on Shortlist button")
-    public void ClickOnShortlistBtn() throws InterruptedException {
-        Thread.sleep(3000);
+    public void ClickOnShortlistBtn() {
         clickButtonByText("Shortlist");
         log.info("Click on Shortlist button");
     }

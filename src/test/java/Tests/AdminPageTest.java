@@ -4,6 +4,7 @@ import Base.BaseClass;
 import Pages.POM01_LoginPage;
 import Pages.POM02_AdminPage;
 import Pages.POM03_PIMPage;
+import TestData.TestData;
 import Utils.TestDataUtils;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
@@ -12,10 +13,6 @@ import io.qameta.allure.Story;
 import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
-import java.util.Random;
-
-import static org.testng.Assert.assertTrue;
 
 public class AdminPageTest extends BaseClass {
 
@@ -27,40 +24,18 @@ public class AdminPageTest extends BaseClass {
     public void VerifyAdminTab() throws InterruptedException {
         log.info("Test Started: Verify Admin Page.");
 
-        // ========= 1. Prepare unique test data =========
-
-        String employeeId = TestDataUtils.UniqueID();   // unique employee ID
-        String employeeLoginUser = TestDataUtils.UniqueUsername("E");  // unique login for employee
-        String adminUsername = "Samm" + (char)('A' + new Random().nextInt(26));   // unique admin user
-        String password = "Pass@123";
-
-        // ========= 2. Login =========
+        // ========= 1. Login =========
         POM01_LoginPage lp = new POM01_LoginPage(getDriver());
-        lp.EnterUsername("Admin");
-        lp.EnterPassword("admin123");
+        lp.EnterUsername(TestData.loginID);
+        lp.EnterPassword(TestData.loginPass);
         lp.ClickOnLoginButton();
         lp.GetTitle();
 
-        // ========= 3. Create Employee in PIM =========
-        POM03_PIMPage Pm= new POM03_PIMPage(getDriver());
-        Pm.ClickOnPimTab();
-        Pm.ClickOnAddBtn();
-        Pm.GetPimTabTitle();
-
-        // Employee names can stay fixed; only ID + login must be unique
-        Pm.EnterFirstName("Sam");
-        Pm.EnterMiddleName("Ron");
-        Pm.EnterLastName("Wilson");
-
-
-        Pm.EnterEmployeeID(employeeId);
-        Pm.EnableCreateLoginSwitch();
-        Pm.EnterUsername(employeeLoginUser);
-        Pm.EnterPassword("Sam@1234", "Sam@1234" );
-        Pm.ClickOnSaveButton();
+        // ========= 2. Create Employee in PIM =========
+        POM03_PIMPage Pm = getPom03PimPage();
         Pm.ClickOnEmplyListOpn();
 
-        // ========= 4. Go to Admin and create Admin User =========
+        // ========= 3. Go to Admin and create Admin User =========
         POM02_AdminPage ad = new POM02_AdminPage(getDriver());
         ad.ClickOnAdmin();
 
@@ -80,31 +55,31 @@ public class AdminPageTest extends BaseClass {
         log.info("Add User Page URL is valid: {}", AddPgUrl);
 
         // Fill Add User form
-        ad.ClickOnUserRoleDropDown("Admin");
-        ad.ClickOnStatusDropDown("Enabled");
-        ad.EnterPasword(password);
+        ad.ClickOnUserRoleDropDown(TestData.UserRoleDropD);
+        ad.ClickOnStatusDropDown(TestData.StatusDropD);
+        ad.EnterPasword(TestData.password);
 
         // This searches existing employee we just created
-        ad.EnterEmployeeName("Sam Ron Wilson");
+        ad.EnterEmployeeName(TestData.EmployeeName);
 
         // Unique admin username
-        ad.EnterUsername(adminUsername);
-        ad.EnterConfirmPassword(password);
+        ad.EnterUsername(TestData.adminUsername);
+        ad.EnterConfirmPassword(TestData.password);
         ad.ClickOnSaveButton();
 
-        // ========= 5. Search created Admin user =========
-        ad.EnterUserNmForSearch(adminUsername);
+        // ========= 4. Search created Admin user =========
+        ad.EnterUserNmForSearch(TestData.adminUsername);
         ad.ClickOnSearchBtn();
 
         // Fetch the created user from a list
         String user = ad.UserList();
 
-        Assert.assertTrue(user.contains(adminUsername),
-                "Created user name is '" + adminUsername + "' not in the list:\n" + user);
+        Assert.assertTrue(user.contains(TestData.adminUsername),
+                "Created user name is '" + TestData.adminUsername + "' not in the list:\n" + user);
 
-        System.out.println("User name is in the list. User is created successfully: " + adminUsername);
+        System.out.println("User name is in the list. User is created successfully: " + TestData.adminUsername);
 
-        // ========= 6. Delete created user =========
+        // ========= 5. Delete created user =========
         ad.ClickOnDeleteIcon();
         ad.DeleteUrs();
 
@@ -112,5 +87,25 @@ public class AdminPageTest extends BaseClass {
         String actualText = ad.PrintNoResult();
         Assert.assertEquals(actualText, "No Records Found", "Delete user failed - Text mismatch!");
         log.info("User deleted successfully. Verified message: {}", actualText);
+    }
+
+    private static POM03_PIMPage getPom03PimPage() {
+        POM03_PIMPage Pm= new POM03_PIMPage(getDriver());
+        Pm.ClickOnPimTab();
+        Pm.ClickOnAddBtn();
+        Pm.GetPimTabTitle();
+
+        // Employee names can stay fixed; only ID + login must be unique
+        Pm.EnterFirstName(TestData.EmployeeFName);
+        Pm.EnterMiddleName(TestData.EmployeeMName);
+        Pm.EnterLastName(TestData.EmployeeLName);
+
+
+        Pm.EnterEmployeeID(TestData.employeeId);
+        Pm.EnableCreateLoginSwitch();
+        Pm.EnterUsername(TestData.employeeLoginUser);
+        Pm.EnterPassword(TestData.PIMUserPass, TestData.PIMUserCofmPass );
+        Pm.ClickOnSaveButton();
+        return Pm;
     }
 }

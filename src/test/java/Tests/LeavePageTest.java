@@ -4,6 +4,7 @@ import Base.BaseClass;
 import Pages.POM01_LoginPage;
 import Pages.POM03_PIMPage;
 import Pages.POM04_LeavePage;
+import TestData.TestData;
 import Utils.TestDataUtils;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
@@ -25,16 +26,11 @@ public class LeavePageTest extends BaseClass {
 
         // --------- Login as Admin ---------
         POM01_LoginPage lp = new POM01_LoginPage(getDriver());
-        lp.EnterUsername("Admin");
-        lp.EnterPassword("admin123");
+        lp.EnterUsername(TestData.loginID);
+        lp.EnterPassword(TestData.loginPass);
         lp.ClickOnLoginButton();
         lp.GetTitle();
 
-        // --------- Generate Unique Username ---------
-        String uniqueUser = "Sam" + System.currentTimeMillis();
-
-        // --------- Generate Unique EmployeeId ---------
-        String employeeId = TestDataUtils.UniqueID();
 
         // --------- Create Employee ---------
         POM03_PIMPage Pm = new POM03_PIMPage(getDriver());
@@ -42,13 +38,13 @@ public class LeavePageTest extends BaseClass {
         Pm.ClickOnPimTab();
         Pm.ClickOnAddBtn();
         Pm.GetPimTabTitle();
-        Pm.EnterFirstName("Sam");
-        Pm.EnterMiddleName("Bob");
-        Pm.EnterLastName("Wilson");
-        Pm.EnterEmployeeID(employeeId);
+        Pm.EnterFirstName(TestData.EmployeeFirName);
+        Pm.EnterMiddleName(TestData.EmployeeMidName);
+        Pm.EnterLastName(TestData.EmployeeLstName);
+        Pm.EnterEmployeeID(TestData.employeeId);
         Pm.EnableCreateLoginSwitch();
-        Pm.EnterUsername(uniqueUser);
-        Pm.EnterPassword("Sam@1234", "Sam@1234");
+        Pm.EnterUsername(TestData.uniqueUser);
+        Pm.EnterPassword(TestData.PIMUserPass, TestData.PIMUserCofmPass);
         Pm.ClickOnSaveButton();
         Pm.ClickOnEmplyListOpn();
 
@@ -58,14 +54,13 @@ public class LeavePageTest extends BaseClass {
         LeavePg.ClickOnLeaveTab();
         LeavePg.ClickOnEntitlementsOpn();
         LeavePg.ClickOnAddEntitlementsOpn();
-        LeavePg.EnterEmployeeNAme("Sam Bob Wilson");
-        LeavePg.SelectLeaveType("CAN - Personal");
-        LeavePg.SelectLeavePeriod("2025-01-01 - 2025-31-12");
-        LeavePg.EnterEntitlementValue(5);
+        LeavePg.EnterEmployeeNAme(TestData.LveEmplyName);
+        LeavePg.SelectLeaveType(TestData.LeaveType);
+        LeavePg.SelectLeavePeriod(TestData.LeavePeriod);
+        LeavePg.EnterEntitlementValue(TestData.EntitlementValue);
         LeavePg.ClickOnSaveButton();
         LeavePg.ClickOnConfirmBtn();
         LeavePg.GetResultText();
         LeavePg.ListOFLeave();
-
     }
 }
