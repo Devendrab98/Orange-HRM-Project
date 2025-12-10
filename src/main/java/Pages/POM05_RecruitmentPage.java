@@ -199,7 +199,8 @@ public class POM05_RecruitmentPage extends BasePageUtils {
     }
 
     @Step("Click on the save button")
-    public void SaveButn(){
+    public void SaveButn() throws InterruptedException {
+        Thread.sleep(2000);
         clickButtonByText("Save");
         log.info("Click on Save button");
     }

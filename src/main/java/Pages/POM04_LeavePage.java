@@ -150,11 +150,13 @@ public class POM04_LeavePage extends BasePageUtils {
     }
 
     @Step("Fetch the Leave List")
-    public void ListOFLeave() {
+    public void ListOFLeave() throws InterruptedException {
+        Thread.sleep(3000);
         wait.waitForVisibilityOfAllElements(ListOfLeave, WaitUtils.TIMEOUT);
         System.out.println("Total leave:" + ListOfLeave.size());
 
         for (WebElement listt : ListOfLeave) {
+            Thread.sleep(2000);
             System.out.println("Leave created result:" + listt.getText());
         }
     }

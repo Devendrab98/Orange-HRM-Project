@@ -236,7 +236,7 @@ public class POM02_AdminPage extends BasePageUtils {
         clickButtonByText("Save");
         log.info("Click on the save button to create user");
 
-        wait.waitForVisibilityOfAllElements(ListOfUsers, WaitUtils.TIMEOUT);
+//        wait.waitForVisibilityOfAllElements(ListOfUsers, WaitUtils.TIMEOUT);
     }
 
 //    @Step("Enter Created User Name: {0}")
