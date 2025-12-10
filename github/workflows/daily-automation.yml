@@ -1,8 +1,8 @@
 name: Daily Test Run
 
 on:
-  schedule:
-    - cron: "30 5 * * *"   # 11:00 AM IST
+  # schedule:
+  #   - cron: "30 5 * * *"   # 11:00 AM IST
   workflow_dispatch:
 
 jobs:
