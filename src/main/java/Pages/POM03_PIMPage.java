@@ -263,7 +263,7 @@ public class POM03_PIMPage extends BasePageUtils {
         log.info("Click on Search button");
     }
 
-    @Step("Click on Edit button button")
+    @Step("Click on Edit button")
     public void ClickOnEditBtn() {
         wait.waitForElementToBeClickable(EditButton, WaitUtils.TIMEOUT);
         EditButton.click();
