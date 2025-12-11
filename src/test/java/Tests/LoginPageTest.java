@@ -23,17 +23,20 @@ public class LoginPageTest extends BaseClass {
         lg.EnterUsername(TestData.loginID);
         lg.EnterPassword(TestData.loginPass);
         lg.ClickOnLoginButton();
-        lg.GetTitle();
+
+        String actualHeader = lg.GetTitle();
+        Assert.assertEquals(actualHeader,"Dashboard", "Login failed! Dashboard header not found." +actualHeader);
+        log.info("Login successful. Proceeding to Logout.");
+
+        // Logout Flow
         lg.ClickOnProfile();
         lg.ClickOnLogout();
-//        lg.InvalidLogin("Admin", "admin12345");
-        String actualTitle = lg.getTitle();
-        Assert.assertTrue(actualTitle.contains("OrangeHRM"),
-                "Title is not match! the expected title is 'OrangeHRM'" + actualTitle);
-        System.out.println("Title is match! User is logout successfully & the title is:" + actualTitle);
 
-//        AllureUtils.attachScreenshotWithName(getDriver(), "After Verify login");
+        String loginTitle = lg.getTitle();
+        Assert.assertTrue(loginTitle.contains("OrangeHRM"), "Logout failed!" +loginTitle);
+        log.info("Logout successful.");
     }
+
 
     @Test(priority = 2, description = "Verify login with Invalid credentials")
     @Description("This test verifies login using Incorrect username and password")
@@ -41,7 +44,10 @@ public class LoginPageTest extends BaseClass {
     @Story("Login Feature")
     public void InvalidCredTest(){
         log.info("Invalid Test started: Verify login Functionality with invalid Credentials");
-        POM01_LoginPage lgg = new POM01_LoginPage(getDriver());
-        lgg.InvalidLogin(TestData.Invalid_Id, TestData.Invalid_Pass);
+        POM01_LoginPage lg = new POM01_LoginPage(getDriver());
+        lg.InvalidLogin(TestData.Invalid_Id, TestData.Invalid_Pass);
+
+        String errorText = lg.getErrorMessage();
+        Assert.assertEquals(errorText, "Invalid credentials", "Error message mismatch!");
     }
 }

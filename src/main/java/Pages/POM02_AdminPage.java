@@ -166,12 +166,6 @@ public class POM02_AdminPage extends BasePageUtils {
         EnableOpt.click();
     }
 
-//    public void EnterPasword(String pass) {
-//        wait.waitForElementToBeVisible(Passwrd, 10);
-//        Passwrd.sendKeys(pass);
-//        log.info("Enter Password:"+pass);
-//    }
-
     @Step("Enter Password: {0}")
     public void EnterPasword(String Password){
         enterTextByLabel("Password", Password);
@@ -182,11 +176,8 @@ public class POM02_AdminPage extends BasePageUtils {
         wait.waitForElementToBeVisible(EmployeeNm, WaitUtils.TIMEOUT);
         EmployeeNm.clear();
         EmployeeNm.sendKeys(EnpName);
-//        Thread.sleep(12000);
-//        EmployeeNm.sendKeys(Keys.ARROW_DOWN, Keys.ENTER);
-//        log.info("Select the Employee name:"+EnpName);
 
-        // Wait for auto-suggest list instead of Thread.sleep(12000)
+        // Wait for an auto-suggest list instead of Thread.sleep(12000)
         WebDriverWait dropdownWait = new WebDriverWait(driver, Duration.ofSeconds(10));
         dropdownWait.until
                 (ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='option']")));
@@ -197,39 +188,17 @@ public class POM02_AdminPage extends BasePageUtils {
 
     }
 
-//    public void EnterUsername(String UsrName) throws InterruptedException {
-//        wait.waitForElementToBeVisible(UserNam, 10);
-//        Thread.sleep(3000);
-//        UserNam.sendKeys(UsrName);
-//        log.info("Enter User name:"+UsrName);
-//    }
-
     @Step("Enter User Name: {0}")
     public void EnterUsername(String UsrName) throws InterruptedException {
         Thread.sleep(2000);
         enterTextByLabel("Username", UsrName);
     }
 
-//    public void EnterConfirmPassword(String Conpass) throws InterruptedException {
-//        wait.waitForElementToBeVisible(ConfimPass, 10);
-//        Thread.sleep(3000);
-//        ConfimPass.sendKeys(Conpass);
-//        log.info("Enter Confirm Password:"+Conpass);
-//    }
-
     @Step("Enter Confirm Password: {0}")
     public void EnterConfirmPassword(String Conpass) throws InterruptedException {
         enterTextByLabel("Confirm Password", Conpass);
         log.info("Enter Confirm Password");
     }
-
-//    public void ClickOnSaveButton() throws InterruptedException {
-//        wait.waitForElementToBeClickable(SaveButton, 10);
-//        Thread.sleep(5000);
-//        SaveButton.click();
-//        Thread.sleep(5000);
-//        log.info("Click on the save button to create user");
-//    }
 
     @Step("Click on the save button to create user")
     public void ClickOnSaveButton() throws InterruptedException {
@@ -239,13 +208,6 @@ public class POM02_AdminPage extends BasePageUtils {
         wait.waitForVisibilityOfAllElements(ListOfUsers, WaitUtils.TIMEOUT);
     }
 
-//    @Step("Enter Created User Name: {0}")
-//    public void EnterUserNmForSearch(String UserNameAd) throws InterruptedException {
-//        wait.waitForElementToBeVisible(UserNa, 10);
-//        UserNa.sendKeys(UserNameAd);
-//        Thread.sleep(2000);
-//        log.info("Enter the created user name:"+UserNameAd);
-//    }
 
     @Step("Enter Created User Name: {0}")
     public void EnterUserNmForSearch(String UserNameAd) throws InterruptedException {
@@ -277,15 +239,6 @@ public class POM02_AdminPage extends BasePageUtils {
     public void ClickOnDeleteIcon() {
         wait.waitForElementToBeClickable(DeleteIcon, WaitUtils.TIMEOUT).click();
         log.info("User deleted successfully");
-//        wait.until(ExpectedConditions.visibilityOf(NoResultText));
-//        String actualText = NoResultText.getText();
-//        String ExpectedText = "No Records Found";
-//
-//        if (actualText.equals(ExpectedText)) {
-//            System.out.println("No Result text is found & matched:" + actualText);
-//        } else {
-//            System.out.println("Text is not matched. Expected: " + ExpectedText + ", but got: " + actualText);
-//        }
     }
 
     @Step("User Deleted Successfully.")
