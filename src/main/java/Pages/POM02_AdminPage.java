@@ -131,10 +131,6 @@ public class POM02_AdminPage extends BasePageUtils {
         return driver.getCurrentUrl();
     }
 
-    public void ClickOnUserRoleDropDown() {
-        wait.waitForElementToBeClickable(UserRole, 10);
-        UserRole.click();
-    }
 
     @Step("Select the User Role dropdown value: {0}")
     public void ClickOnUserRoleDropDown(String UserRoleValue){
@@ -143,27 +139,11 @@ public class POM02_AdminPage extends BasePageUtils {
         log.info("Select the 'Admin' option from the User role dropdown");
     }
 
-    public void clickOnAdminOpt() {
-        wait.waitForElementToBeClickable(AdminOpt, 10);
-        AdminOpt.click();
-    }
-
-    public void ClickOnStatusDropDown() {
-        wait.waitForElementToBeClickable(StatusDropD, 10);
-        StatusDropD.click();
-
-    }
-
     @Step("Select the Status dropdown value: {0}")
     public void ClickOnStatusDropDown(String StatusValue){
         selectDropdownByLabel("Status",StatusValue);
         log.info("Click on Status Dropdown");
         log.info("Select the 'Enable' option from the status dropdown");
-    }
-
-    public void ClickOnEnableOpt() {
-        wait.waitForElementToBeClickable(EnableOpt, 10);
-        EnableOpt.click();
     }
 
     @Step("Enter Password: {0}")

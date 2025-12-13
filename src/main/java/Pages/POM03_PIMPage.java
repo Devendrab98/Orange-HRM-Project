@@ -149,13 +149,6 @@ public class POM03_PIMPage extends BasePageUtils {
         System.out.println("PIM page title: " + PIMTabTitle.getText());
     }
 
-//    public void UploadProfile(String Picture) throws InterruptedException {
-//        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("//div[@class='oxd-input-group oxd-input-field-bottom-space']//input[@type='file']")));
-//        ((JavascriptExecutor) driver).executeScript("arguments[0].style.display='block';", Profile);
-//        Thread.sleep(2000);
-//        Profile.sendKeys(Picture);
-//    }
-
     @Step("Enter First Name: {0}")
     public void EnterFirstName(String FName) {
         wait.waitForElementToBeVisible(EmpFirstName, WaitUtils.TIMEOUT);
@@ -177,11 +170,6 @@ public class POM03_PIMPage extends BasePageUtils {
         log.info("Enter Last Name:" + LName);
     }
 
-//    public void EnterEmployeeID(String EmployeeID) throws InterruptedException {
-//        wait.waitForElementToBeVisible(EmpID, 10);
-//        EmpID.sendKeys(EmployeeID);
-//        log.info("Enter Employee ID:" + EmployeeID);
-//    }
 
     @Step("Enter Employee Id: {0}")
     public void EnterEmployeeID(String EmpId) {
@@ -195,11 +183,6 @@ public class POM03_PIMPage extends BasePageUtils {
         log.info("Enable Create login switch to create the password for the create user");
     }
 
-//    public void EnterUsername(String UName) {
-//        wait.waitForElementToBeVisible(UserNAme, 10);
-//        UserNAme.sendKeys(UName);
-//        log.info("Enter the User name:" + UName);
-//    }
 
     @Step("Enter User Name: {0}")
     public void EnterUsername(String UName) {
@@ -277,19 +260,6 @@ public class POM03_PIMPage extends BasePageUtils {
         log.info("Click on Job option");
     }
 
-//    @Step("Select Job Title: {0}")
-//    public void SelectJobTitle(String SelectedJobTitle) throws InterruptedException {
-//        Thread.sleep(3000);
-//        wait.waitForElementToBeClickable(JobTitle, 10).click();
-//
-//        // Select the option
-//        WebElement SelectedOption = wait.waitForElementToBeClickableBy(
-//                By.xpath("//div[@role='listbox']//span[text()='" + SelectedJobTitle + "']"), 10);
-//
-//        SelectedOption.click();
-//        System.out.println("Selected Job Title: " + SelectedOption);
-//    }
-
     @Step("Select the Job Title dropdown value: {0}")
     public void SelectJobTitle(String SelectedJobTitle) {
         selectDropdownByLabel("Job Title", SelectedJobTitle);
@@ -304,11 +274,6 @@ public class POM03_PIMPage extends BasePageUtils {
 
 //        wait.waitForVisibilityOfAllElements(ListOffUsers, 10);
     }
-
-//    public void ListOFFUsers(){
-//        wait.waitForVisibilityOfAllElements(ListOffUsers, 10);
-//        System.out.println("Total User:" + ListOffUsers.size());
-//    }
 
     @Step("Clicked on the Delete icon")
     public void ClickOnDelIcon() {

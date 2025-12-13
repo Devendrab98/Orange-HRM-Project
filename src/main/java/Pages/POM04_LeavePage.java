@@ -119,22 +119,11 @@ public class POM04_LeavePage extends BasePageUtils {
         log.info("Enter the Entitlement Value:" + Number);
     }
 
-    //    public void ClickOnSaveButton() {
-//        wait.waitForElementToBeClickable(SaVeButtonn, 10);
-//        SaVeButtonn.click();
-//        log.info("Click on save button");
-//    }
     @Step("Click on the save button")
     public void ClickOnSaveButton() {
         clickButtonByText("Save");
         log.info("Click on save button");
     }
-
-//    public void ClickOnConfirmBtn() {
-//        wait.waitForElementToBeClickable(ConfirmButton, 10);
-//        ConfirmButton.click();
-//        log.info("Click on Confirm Button button");
-//    }
 
     @Step("Confirm Button")
     public void ClickOnConfirmBtn() {
