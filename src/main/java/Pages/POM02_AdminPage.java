@@ -103,11 +103,11 @@ public class POM02_AdminPage extends BasePageUtils {
     @FindBy(xpath = "//div[text()='-- Select --']")
     private List<WebElement> SelectDropdown;
 
-    // ===== Actions =====
+    // ===== Actions =====-
 
     @Step("Click on the Admin tab")
     public void ClickOnAdmin() throws InterruptedException {
-        Thread.sleep(200);
+        Thread.sleep(2000);
         driver.navigate().refresh();
         wait.waitForElementToBeClickable(AdminTab, WaitUtils.TIMEOUT);
         AdminTab.click();
@@ -157,8 +157,8 @@ public class POM02_AdminPage extends BasePageUtils {
         EmployeeNm.clear();
         EmployeeNm.sendKeys(EnpName);
 
-        // Wait for an auto-suggest list instead of Thread.sleep(12000)
-        WebDriverWait dropdownWait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        // Wait for an auto-suggest list
+        WebDriverWait dropdownWait = new WebDriverWait(driver, Duration.ofSeconds(WaitUtils.TIMEOUT));
         dropdownWait.until
                 (ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='option']")));
 

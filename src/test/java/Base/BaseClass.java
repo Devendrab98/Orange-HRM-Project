@@ -20,10 +20,11 @@ import java.io.IOException;
 public class BaseClass {
 
     // ThreadLocal driver (safe for parallel execution)
-    private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+    public static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
-    // Correct logger instance for Log4j2
+    // Logger instance for Log4j2
     public static Logger log = LogManager.getLogger(BaseClass.class);
+
 
     ConfigReader configReader;
 

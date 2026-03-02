@@ -26,7 +26,7 @@ public class POM01_LoginPage {
     private WebElement usernameField;
 
     // Find Password
-    @FindBy(name = "password")
+    @FindBy(xpath = "//input[@name='password']")
     private WebElement passwordField;
 
     // Find Login Button

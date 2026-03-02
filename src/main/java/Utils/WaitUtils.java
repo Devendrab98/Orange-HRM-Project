@@ -13,7 +13,7 @@ public class WaitUtils {
     private WebDriver driver;
 
     // Detect CI environment (GitHub Actions)
-    public static final int TIMEOUT = System.getenv("GITHUB_ACTIONS") != null ? 25 : 10;
+    public static final int TIMEOUT = System.getenv("GITHUB_ACTIONS") != null ? 25 : 15;
 
 
     public WaitUtils(WebDriver driver) {
