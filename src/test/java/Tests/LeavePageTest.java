@@ -13,23 +13,37 @@ import io.qameta.allure.Story;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import java.util.Map;
+
 public class LeavePageTest extends BaseClass {
 
-    @Test(description = "Verify Create the leave for the Employee")
+    @Test(description = "Verify Create the leave for the Employee",
+    dataProvider = "ExcelData",
+    dataProviderClass = Utils.DataProvider.class)
     @Description("This test verifies the to Create the leave for the Employee")
     @Severity(SeverityLevel.CRITICAL)
     @Story("leave Creations Feature")
     @Parameters("Browser")
-    public void VerifyLeaveTab() throws InterruptedException {
+    public void VerifyLeaveTab(Map<String, String>data) throws InterruptedException {
         log.info("Test Started: Verify Leave Page.");
         log.info("Admin User is now login into account.");
 
+        String loginUser = data.get("loginUsername");
+        String loginPass = data.get("loginPassword");
+
         // --------- Login as Admin ---------
         POM01_LoginPage lp = new POM01_LoginPage(getDriver());
-        lp.EnterUsername(TestData.loginID);
-        lp.EnterPassword(TestData.loginPass);
+        lp.EnterUsername(loginUser);
+        lp.EnterPassword(loginPass);
         lp.ClickOnLoginButton();
         lp.GetTitle();
+
+        String firstName = data.get("firstName");
+        String lastName = data.get("lastName");
+        String empId = data.get("empId");
+        String pimUsername = data.get("pimUsername");
+        String password = data.get("password");
+        String confirm = data.get("confirmPassword");
 
 
         // --------- Create Employee ---------
@@ -38,15 +52,21 @@ public class LeavePageTest extends BaseClass {
         Pm.ClickOnPimTab();
         Pm.ClickOnAddBtn();
         Pm.GetPimTabTitle();
-        Pm.EnterFirstName(TestData.EmployeeFirName);
-        Pm.EnterMiddleName(TestData.EmployeeMidName);
-        Pm.EnterLastName(TestData.EmployeeLstName);
-        Pm.EnterEmployeeID(TestData.employeeId);
+        Pm.EnterFirstName(firstName);
+        Pm.EnterLastName(lastName);
+        Pm.EnterEmployeeID(empId);
         Pm.EnableCreateLoginSwitch();
-        Pm.EnterUsername(TestData.uniqueUser);
-        Pm.EnterPassword(TestData.PIMUserPass, TestData.PIMUserCofmPass);
+        Pm.EnterUsername(pimUsername);
+        Pm.EnterPassword(password, confirm);
         Pm.ClickOnSaveButton();
         Pm.ClickOnEmplyListOpn();
+
+
+        String employeeName = data.get("firstName") + " " + data.get("lastName");
+        String leaveType = data.get("leaveType");
+        String leavePeriod = data.get("leavePeriod");
+        int entitlementValue = Integer.parseInt(data.get("entitlementValue"));
+
 
         // --------- Assign Leave to that Employee ---------
         POM04_LeavePage LeavePg = new POM04_LeavePage(getDriver());
@@ -54,10 +74,10 @@ public class LeavePageTest extends BaseClass {
         LeavePg.ClickOnLeaveTab();
         LeavePg.ClickOnEntitlementsOpn();
         LeavePg.ClickOnAddEntitlementsOpn();
-        LeavePg.EnterEmployeeNAme(TestData.LveEmplyName);
-        LeavePg.SelectLeaveType(TestData.LeaveType);
-        LeavePg.SelectLeavePeriod(TestData.LeavePeriod);
-        LeavePg.EnterEntitlementValue(TestData.EntitlementValue);
+        LeavePg.EnterEmployeeNAme(employeeName);
+        LeavePg.SelectLeaveType(leaveType);
+        LeavePg.SelectLeavePeriod(leavePeriod);
+        LeavePg.EnterEntitlementValue(entitlementValue);
         LeavePg.ClickOnSaveButton();
         LeavePg.ClickOnConfirmBtn();
         LeavePg.GetResultText();

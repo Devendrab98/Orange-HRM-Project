@@ -30,5 +30,11 @@ public class FakeDataUtils {
         return faker.name().username();
     }
 
+    public static String email() {
+        return faker.internet().emailAddress();
+    }
 
+    public static String contactNum() {
+        return faker.number().digits(10);
+    }
 }

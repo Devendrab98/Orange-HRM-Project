@@ -35,6 +35,14 @@ public class TokenResolver {
             return cache.computeIfAbsent(columnKey,
                     k -> FakeDataUtils.empId_PIM());
 
+        if (value.contains("{faker.email}"))
+            return cache.computeIfAbsent(columnKey,
+                    k -> FakeDataUtils.email());
+
+        if (value.contains("{faker.contactNum}"))
+            return cache.computeIfAbsent(columnKey,
+                    k -> FakeDataUtils.contactNum());
+
         if (value.contains("{faker.userName}")) {
             // differentiate based on column
             if (columnKey.equalsIgnoreCase("pimUsername"))
