@@ -4,7 +4,6 @@ import Base.BaseClass;
 import Pages.POM01_LoginPage;
 import Pages.POM02_AdminPage;
 import Pages.POM03_PIMPage;
-import TestData.TestData;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
@@ -12,6 +11,7 @@ import io.qameta.allure.Story;
 import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import testUtils.DataProvider;
 
 import java.util.Map;
 
@@ -19,7 +19,7 @@ public class AdminPageTest extends BaseClass {
 
     @Test(description = "Verify Create & delete the admin user",
             dataProvider = "ExcelData",
-            dataProviderClass = Utils.DataProvider.class)
+            dataProviderClass = DataProvider.class)
     @Description("This test verifies the to create the admin user")
     @Severity(SeverityLevel.CRITICAL)
     @Story("User Creations Feature")

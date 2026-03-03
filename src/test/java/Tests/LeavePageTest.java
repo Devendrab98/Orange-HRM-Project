@@ -4,14 +4,13 @@ import Base.BaseClass;
 import Pages.POM01_LoginPage;
 import Pages.POM03_PIMPage;
 import Pages.POM04_LeavePage;
-import TestData.TestData;
-import Utils.TestDataUtils;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import testUtils.DataProvider;
 
 import java.util.Map;
 
@@ -19,7 +18,7 @@ public class LeavePageTest extends BaseClass {
 
     @Test(description = "Verify Create the leave for the Employee",
     dataProvider = "ExcelData",
-    dataProviderClass = Utils.DataProvider.class)
+    dataProviderClass = DataProvider.class)
     @Description("This test verifies the to Create the leave for the Employee")
     @Severity(SeverityLevel.CRITICAL)
     @Story("leave Creations Feature")

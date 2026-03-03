@@ -3,14 +3,13 @@ package Tests;
 import Base.BaseClass;
 import Pages.POM01_LoginPage;
 import Pages.POM05_RecruitmentPage;
-import TestData.TestData;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
-import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import testUtils.DataProvider;
 
 import java.util.Map;
 
@@ -18,7 +17,7 @@ public class RecruitmentPageTest extends BaseClass {
 
     @Test(description = "Verify Recruitment creation",
             dataProvider = "ExcelData",
-            dataProviderClass = Utils.DataProvider.class)
+            dataProviderClass = DataProvider.class)
     @Description("This test verifies Recruitment Page")
     @Severity(SeverityLevel.NORMAL)
     @Story("Recruitment Feature")

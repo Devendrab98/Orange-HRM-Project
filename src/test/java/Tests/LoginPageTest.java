@@ -2,12 +2,12 @@ package Tests;
 
 import Base.BaseClass;
 import Pages.POM01_LoginPage;
-import TestData.TestData;
 import Utils.AllureUtils;
 import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import testUtils.DataProvider;
 
 import java.util.Map;
 
@@ -16,7 +16,7 @@ public class LoginPageTest extends BaseClass {
     @Test(priority = 1,
             description = "Verify login with valid credentials",
             dataProvider = "ExcelData",
-            dataProviderClass = Utils.DataProvider.class)
+            dataProviderClass = DataProvider.class)
     @Description("Login with user: {0} expected: {2}")
     @Severity(SeverityLevel.CRITICAL)
     @Story("Login Feature")
@@ -56,7 +56,7 @@ public class LoginPageTest extends BaseClass {
             enabled = false,
             description = "Verify login with Invalid credentials",
             dataProvider = "ExcelData",
-            dataProviderClass = Utils.DataProvider.class
+            dataProviderClass = DataProvider.class
     )
     @Description("This test verifies login using Incorrect username and password")
     @Severity(SeverityLevel.CRITICAL)

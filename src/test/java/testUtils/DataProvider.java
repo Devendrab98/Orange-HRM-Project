@@ -1,4 +1,4 @@
-package Utils;
+package testUtils;
 
 import constants.FrameworkConstants;
 
@@ -9,7 +9,7 @@ import java.util.Map;
 public class DataProvider {
 
 
-    @org.testng.annotations.DataProvider(name = "ExcelData")
+    @org.testng.annotations.DataProvider(name = "ExcelData", parallel = true)
     public static Object[][] getExcelData(Method method) {
 
         // Sheet name = test method name

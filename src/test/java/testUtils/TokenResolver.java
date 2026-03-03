@@ -1,4 +1,4 @@
-package Utils;
+package testUtils;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -11,6 +11,7 @@ public class TokenResolver {
 
     public static void clearRowCache() {
         rowCache.get().clear();
+        rowCache.remove();
     }
 
     public static String resolve(String value, String columnKey) {

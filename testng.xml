@@ -1,27 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="All Test Suite" parallel="none" thread-count="0" preserve-order="true">
+<suite name="All Test Suite" parallel="classes" thread-count="3">
 
     <!-- ============================
          TESTNG LISTENERS (Allure + Extent)
          ============================ -->
     <listeners>
         <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
-        <listener class-name="Utils.ExtendListenerClass"/>
+        <listener class-name="testUtils.ExtendListenerClass"/>
     </listeners>
 
     <!-- ============================
          SINGLE TEST (Sequential Execution)
          ============================ -->
-    <test name="Complete Test Execution" preserve-order="true" verbose="2">
+    <test name="Complete Test Execution">
         <parameter name="Browser" value="chrome"/>
-
         <classes>
-<!--            <class name="Tests.LoginPageTest"/>-->
-<!--            <class name="Tests.DDT_AdminTest"/>-->
-<!--            <class name="Tests.DDT_PIMPageTest"/>-->
-<!--            <class name="Tests.PIMPageTest"/>-->
+            <class name="Tests.LoginPageTest"/>
+            <class name="Tests.AdminPageTest"/>
+            <class name="Tests.PIMPageTest"/>
+            <class name="Tests.LeavePageTest"/>
             <class name="Tests.RecruitmentPageTest"/>
         </classes>
     </test>

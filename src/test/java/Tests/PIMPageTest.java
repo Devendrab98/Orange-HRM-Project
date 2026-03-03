@@ -3,25 +3,22 @@ package Tests;
 import Base.BaseClass;
 import Pages.POM01_LoginPage;
 import Pages.POM03_PIMPage;
-import TestData.TestData;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import testUtils.DataProvider;
 
 import java.io.IOException;
 import java.util.Map;
-
-import static Base.BaseClass.getDriver;
-import static Base.BaseClass.log;
 
 public class PIMPageTest extends BaseClass {
 
     @Test(description = "Verify Create & Update the Employee",
             dataProvider = "ExcelData",
-            dataProviderClass = Utils.DataProvider.class)
+            dataProviderClass = DataProvider.class)
     @Description("This test verifies the to create Create & Update the Employee")
     @Severity(SeverityLevel.CRITICAL)
     @Story("Employee Creations Feature")
